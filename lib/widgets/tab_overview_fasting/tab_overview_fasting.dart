@@ -15,21 +15,22 @@ class _TabOverviewFastingState extends State<TabOverviewFasting> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-            bottom: TabBar(
-              tabs: <Widget>[
-               Text('Fasting Effect'),
-               Text('Refeed'),
-    
-              ],
-            ),
-          ),
-          body: const TabBarView(
-            children: <Widget>[
-              Center(child: Text("It's cloudy here")),
-              Center(child: Text("It's cloudy here")),
-             
+          bottom: TabBar(
+            labelColor: Colors.amber,
+            dividerColor: Colors.amber,
+            indicatorColor: Colors.amber,
+            tabs: <Widget>[
+              Container(color: Colors.blue, child: Text('Fasting Effect')),
+              Text('Refeed'),
             ],
           ),
+        ),
+        body: const TabBarView(
+          children: <Widget>[
+            Center(child: Text("It's cloudy here")),
+            Center(child: Text("It's cloudy here")),
+          ],
+        ),
       ),
     );
   }

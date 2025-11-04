@@ -13,18 +13,16 @@ class _MainFastingWidgetState extends State<MainFastingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: DropdownButton(
-          value: pilihanFasting,
-          hint: Text('Pilih'),
-          items: jenisFasting.map((pilihan){
-            return DropdownMenuItem(value: pilihan,child: Text(pilihan));
-        }).toList(), onChanged: (e){
-          setState(() {
-            pilihanFasting = e;
-          });
-        }),
-      ),
+      body: DropdownButton(
+        value: pilihanFasting,
+        hint: Text('Pilih'),
+        items: jenisFasting.map((pilihan){
+          return DropdownMenuItem(value: pilihan,child: Text(pilihan));
+      }).toList(), onChanged: (e){
+        setState(() {
+          pilihanFasting = e;
+        });
+      }),
     );
   }
 }
