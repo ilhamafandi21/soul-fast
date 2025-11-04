@@ -15,30 +15,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.all(5),
-        height: 200,
+        height: 150,
         decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              child: DropdownButton(
-                value: selectedVal,
-                hint: Text('Pilih'),
-                items: jenisFasting.map((pilihan) {
-                  return DropdownMenuItem(value: pilihan, child: Text(pilihan));
-                }).toList(),
-                onChanged: (e) {
-                  setState(() {
-                    selectedVal = e;
-                  });
-                },
-              ),
-            ),
-            Container(child: Text(selectedVal ?? 'Silahkan pilih jenis fasting')),
-          ],
+          color: Color.fromARGB(57, 138, 116, 116),
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
     );
