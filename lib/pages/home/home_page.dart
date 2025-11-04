@@ -13,10 +13,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
-        backgroundColor: const Color.fromARGB(255, 196, 255, 221),
+        backgroundColor: const Color.fromARGB(255, 238, 255, 0),
       ),
       body: Container(
-        
+        width: double.infinity,
+        height: 200,
+        color: const Color.fromARGB(255, 212, 227, 0),
       ),
         // backgroundColor: Theme.of(context).colorScheme.onTertiary),
     );
