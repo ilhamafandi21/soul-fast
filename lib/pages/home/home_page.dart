@@ -9,38 +9,38 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String? selectedVal;
+  List<String> jenisFasting = ['16/8', '18/6', 'OMAD', '36', '48', '72'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        backgroundColor: const Color.fromARGB(255, 0, 179, 255),
-      ),
       body: Container(
+        margin: EdgeInsets.all(5),
+        height: 200,
         decoration: BoxDecoration(
-           color: const Color.fromARGB(255, 99, 208, 255),
-           borderRadius: BorderRadius.circular(10)
+          color: Colors.amber,
+          borderRadius: BorderRadius.circular(15),
         ),
-        margin: EdgeInsets.all(10),
-       
-        child: DropdownButton(
-          alignment: AlignmentGeometry.center,
-          borderRadius: BorderRadius.circular(10),
-          value: selectedVal,
-          hint: Text('pilih:'),
-          items: ['16/8', '18/6', 'OMAD', '36 Jam', '48 Jam', '72 Jam'].map((
-            e,
-          ) {
-            return DropdownMenuItem(value: e, child: Text(e));
-          }).toList(),
-          onChanged: (e) {
-            setState(() {
-              selectedVal = e;
-            });
-          },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              child: DropdownButton(
+                value: selectedVal,
+                hint: Text('Pilih'),
+                items: jenisFasting.map((pilihan) {
+                  return DropdownMenuItem(value: pilihan, child: Text(pilihan));
+                }).toList(),
+                onChanged: (e) {
+                  setState(() {
+                    selectedVal = e;
+                  });
+                },
+              ),
+            ),
+            Container(child: Text(selectedVal ?? 'Silahkan pilih jenis fasting')),
+          ],
         ),
       ),
-      // backgroundColor: Theme.of(context).colorScheme.onTertiary),
     );
   }
 }
