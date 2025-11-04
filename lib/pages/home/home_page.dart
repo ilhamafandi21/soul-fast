@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soulfast/widgets/tab_overview_fasting/tab_overview_fasting.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,11 +15,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.all(5),
-        height: 150,
-        decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: BorderRadius.circular(5),
+        child: Column(
+          children: [
+            Container(),
+            Container(
+              height: 300,
+              child: TabOverviewFasting()),
+          ],
         ),
       ),
     );
