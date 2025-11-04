@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.all(5),
         height: 150,
         decoration: BoxDecoration(
-          color: Color.fromARGB(57, 138, 116, 116),
+          color: Colors.amber,
           borderRadius: BorderRadius.circular(5),
         ),
       ),
