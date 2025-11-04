@@ -8,6 +8,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? selectedVal;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +20,18 @@ class _HomePageState extends State<HomePage> {
         width: double.infinity,
         height: 200,
         color: const Color.fromARGB(255, 212, 227, 0),
+        child: DropdownButton(
+          value: selectedVal,
+          hint: Text('Pilih Jenis Fasting: '),
+          items: ['16/8', '18/6', 'OMAD', '36 Jam', '48 Jam', '72 Jam'].map((
+            e,
+          ) {
+            return DropdownMenuItem(value: e, child: Text(e));
+          }).toList(),
+          onChanged: (e) {},
+        ),
       ),
-        // backgroundColor: Theme.of(context).colorScheme.onTertiary),
+      // backgroundColor: Theme.of(context).colorScheme.onTertiary),
     );
   }
 }
