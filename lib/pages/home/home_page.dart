@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soulfast/widgets/main_fasting_widget.dart';
 import 'package:soulfast/widgets/tab_overview_fasting/tab_overview_fasting.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,9 +18,11 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         child: Column(
           children: [
-            Container(),
             Container(
-              height: 300,
+              height: 100,
+              child: MainFastingWidget()),
+            Container(
+              height: 100,
               child: TabOverviewFasting()),
           ],
         ),
