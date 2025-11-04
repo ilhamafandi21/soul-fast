@@ -14,21 +14,30 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
-        backgroundColor: const Color.fromARGB(255, 238, 255, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 179, 255),
       ),
       body: Container(
-        width: double.infinity,
-        height: 200,
-        color: const Color.fromARGB(255, 212, 227, 0),
+        decoration: BoxDecoration(
+           color: const Color.fromARGB(255, 99, 208, 255),
+           borderRadius: BorderRadius.circular(10)
+        ),
+        margin: EdgeInsets.all(10),
+       
         child: DropdownButton(
+          alignment: AlignmentGeometry.center,
+          borderRadius: BorderRadius.circular(10),
           value: selectedVal,
-          hint: Text('Pilih Jenis Fasting: '),
+          hint: Text('pilih:'),
           items: ['16/8', '18/6', 'OMAD', '36 Jam', '48 Jam', '72 Jam'].map((
             e,
           ) {
             return DropdownMenuItem(value: e, child: Text(e));
           }).toList(),
-          onChanged: (e) {},
+          onChanged: (e) {
+            setState(() {
+              selectedVal = e;
+            });
+          },
         ),
       ),
       // backgroundColor: Theme.of(context).colorScheme.onTertiary),
