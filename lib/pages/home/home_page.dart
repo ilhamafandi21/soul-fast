@@ -15,17 +15,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 100,
-            color: Colors.amber,
-            child: MainFastingWidget()),
-          Container(
-            height: 200,
-            color: Colors.amber,
-            child: TabOverviewFasting()),
-        ],
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Container(
+              height: 100,child: MainFastingWidget()),
+            Container(
+              height: 200,
+              padding: EdgeInsets.all(5),
+              color: const Color.fromARGB(255, 0, 68, 255),
+              child: TabOverviewFasting()),
+          ],
+        ),
       ),
     );
   }
