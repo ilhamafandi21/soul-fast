@@ -16,9 +16,12 @@ class _TabOverviewFastingState extends State<TabOverviewFasting> {
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
-            labelColor: Colors.amber,
-            dividerColor: Colors.amber,
-            indicatorColor: Colors.amber,
+            indicator: BoxDecoration(
+              border: BoxBorder.all(
+                color: Colors.black,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
             tabs: <Widget>[
               Container(color: Colors.blue, child: Text('Fasting Effect')),
               Text('Refeed'),
