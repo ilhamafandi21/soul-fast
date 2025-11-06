@@ -53,7 +53,15 @@ class _HomeState extends State<Home> {
       remainingSecond = durationFastToSecond ?? 0;
     });
 
-countdownTimer
+countdownTimer = Timer.periodic(Duration(seconds: 1), (e){
+  if(remainingSecond > 0){
+    setState(() {
+      remainingSecond--;
+    });
+  }else{
+    e.cancel();
+  }
+});
 
   }
 
