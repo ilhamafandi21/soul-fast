@@ -10,6 +10,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? selectedFast;
+  int durationToSecond = 0;
+  int remainingSecond = 0;
+  Timer? countdownTimer;
   List<String> variantFast = [
     '16/8',
     '18/6',
@@ -18,6 +21,39 @@ class _HomeState extends State<Home> {
     '48 Jam',
     '72 Jam',
   ];
+
+  void startFasting() {
+    switch (selectedFast) {
+      case '16/8':
+        durationToSecond = 16 * 3600;
+        break;
+      case '18/6':
+        durationToSecond = 18 * 3600;
+        break;
+      case '24 Jam':
+        durationToSecond = 24 * 3600;
+        break;
+      case '36 Jam':
+        durationToSecond = 36 * 3600;
+        break;
+      case '48 Jam':
+        durationToSecond = 48 * 3600;
+        break;
+      case '72 Jam':
+        durationToSecond = 72 * 3600;
+        break;
+      default:
+        durationToSecond = 0 * 3600;
+    }
+
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (durationToSecond > 0) {
+        durationToSecond--;
+      } else {
+        timer.cancel();
+      }
+    });
+  }
 
   String formatTime(int remainingSecond) {
     final hours = remainingSecond ~/ 3600;
@@ -53,7 +89,7 @@ class _HomeState extends State<Home> {
               width: 100,
               decoration: BoxDecoration(
                 color: Colors.cyan[100],
-                borderRadius: BorderRadius.circular(20)
+                borderRadius: BorderRadius.circular(20),
               ),
               child: DropdownButton(
                 underline: SizedBox(),
@@ -75,12 +111,14 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-
+            Text(durationToSecond.toString()),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(Colors.cyan[100]),
               ),
-              onPressed: () {},
+              onPressed: () {
+                startFasting();
+              },
               child: Text('Mulai'),
             ),
           ],
