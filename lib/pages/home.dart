@@ -11,8 +11,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+ int ? durationFast;
   String? valueFast; 
-  List<String> jenisFasting = [
+  List<String> variantFast = [
     '16/8',
     '18/6',
     '24 Jam',
@@ -20,6 +21,33 @@ class _HomeState extends State<Home> {
     '48 Jam',
     '72 Jam',
   ];
+
+  void startFasting(){
+    switch (valueFast) {
+      case '16/8':
+        durationFast = 16;
+      case '18/6':
+        durationFast = 16;
+      case '24 Jam':
+        durationFast = 24;
+      case '36 Jam':
+        durationFast = 36;
+      case '48 Jam':
+        durationFast = 48;
+      case '72 Jam':
+        durationFast = 72;
+      default:
+        durationFast = 0;
+    }
+
+
+    Timer.periodic(durationFast?? 0 , (e){
+      
+    })
+  }
+  void stopFasting(){
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +61,11 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         children: [
-          DropdownButton(
-            value: jenisFasting,
+          DropdownButton<String>(
+            value: valueFast,
             hint: Text('Pilih'),
-            items: jenisFasting.map((value){
-              return DropdownMenuItem(
+            items: variantFast.map((value){
+              return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value));
             }).toList(), onChanged: (e){
