@@ -45,7 +45,8 @@ class _HomeState extends State<Home> {
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 10,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               height: 30,
@@ -55,7 +56,7 @@ class _HomeState extends State<Home> {
                 borderRadius: BorderRadius.circular(20)
               ),
               child: DropdownButton(
-                
+                underline: SizedBox(),
                 padding: EdgeInsets.only(left: 10),
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 dropdownColor: Colors.cyan[300],
