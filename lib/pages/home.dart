@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,13 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
-  String? buttonText;
-  int durationFastToSecond = 0;
-  int remainingSecond = 0;
-  Timer? countdownTimer;
-
-  String? valueFast;
+  String? selectedFast;
   List<String> variantFast = [
     '16/8',
     '18/6',
@@ -35,95 +28,61 @@ class _HomeState extends State<Home> {
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
-  void startFasting() {
-    switch (valueFast) {
-      case '16/8':
-        durationFastToSecond = 16 * 3600;
-        break;
-      case '18/6':
-        durationFastToSecond = 18 * 3600;
-        break;
-      case '24 Jam':
-        durationFastToSecond = 24 * 3600;
-        break;
-      case '36 Jam':
-        durationFastToSecond = 36 * 3600;
-        break;
-      case '48 Jam':
-        durationFastToSecond = 48 * 3600;
-        break;
-      case '72 Jam':
-        durationFastToSecond = 72 * 3600;
-        break;
-      default:
-        durationFastToSecond = 0 * 3600;
-        break;
-    }
-
-    setState(() {
-      remainingSecond = durationFastToSecond;
-    });
-
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (e) {
-      if (remainingSecond > 0) {
-        setState(() {
-          remainingSecond--;
-        });
-      } else {
-        e.cancel();
-      }
-    });
-  }
-
-  void stopFasting() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'SoulFast!',
-          style: TextStyle(fontWeight: FontWeight.w100, color: Colors.white70),
-        ),
+        title: Text('SoulFast!'),
         backgroundColor: Colors.blue,
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
       ),
-      body: Center(
-        child: Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 205, 223, 255),
-            borderRadius: BorderRadius.circular(20)
-
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DropdownButton<String>(
-                value: valueFast,
-                hint: Text('Pilih'),
+      body: Container(
+        height: 200,
+        width: 200,
+        margin: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: Colors.cyan,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 30,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.cyan[100],
+                borderRadius: BorderRadius.circular(20)
+              ),
+              child: DropdownButton(
+                
+                padding: EdgeInsets.only(left: 10),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                dropdownColor: Colors.cyan[300],
+                value: selectedFast,
+                hint: Text('Select', style: TextStyle(fontSize: 14)),
                 items: variantFast.map((value) {
-                  return DropdownMenuItem<String>(value: value, child: Text(value));
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(value, style: TextStyle(fontSize: 14)),
+                  );
                 }).toList(),
                 onChanged: (e) {
                   setState(() {
-                    valueFast = e;
+                    selectedFast = e;
                   });
                 },
               ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                ),
-                onPressed: () {
-                  startFasting();
-                },
-                child: Text('Mulai', style: TextStyle(color: Colors.white70)),
+            ),
+
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.cyan[100]),
               ),
-          
-              Text(formatTime(remainingSecond)),
-            ],
-          ),
+              onPressed: () {},
+              child: Text('Mulai'),
+            ),
+          ],
         ),
       ),
     );
