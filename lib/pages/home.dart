@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +9,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  String? valueFast; 
+  List<String> jenisFasting = [
+    '16/8',
+    '18/6',
+    '24 Jam',
+    '36 Jam',
+    '48 Jam',
+    '72 Jam',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +32,20 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         children: [
+          DropdownButton(
+            value: jenisFasting,
+            hint: Text('Pilih'),
+            items: jenisFasting.map((value){
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value));
+            }).toList(), onChanged: (e){}),
           ElevatedButton(
-            style: ButtonStyle(textStyle: TextStyle(fontSize: 12)),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(Colors.blue),
+            ),
             onPressed: () {},
-            child: Text('Mulai'),
+            child: Text('Mulai', style: TextStyle(color: Colors.white70),),
            
           ),
         ],
