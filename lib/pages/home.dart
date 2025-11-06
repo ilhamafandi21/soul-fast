@@ -10,9 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
- int ? durationFast;
-  String? valueFast; 
+  int? durationFast;
+  String? valueFast;
   List<String> variantFast = [
     '16/8',
     '18/6',
@@ -22,32 +21,33 @@ class _HomeState extends State<Home> {
     '72 Jam',
   ];
 
-  void startFasting(){
+  void startFasting() {
     switch (valueFast) {
       case '16/8':
         durationFast = 16;
+        break;
       case '18/6':
-        durationFast = 16;
+        durationFast = 18;
+        break;
       case '24 Jam':
         durationFast = 24;
+        break;
       case '36 Jam':
         durationFast = 36;
+        break;
       case '48 Jam':
         durationFast = 48;
+        break;
       case '72 Jam':
         durationFast = 72;
+        break;
       default:
         durationFast = 0;
+        break;
     }
-
-
-    Timer.periodic(durationFast?? 0 , (e){
-      
-    })
   }
-  void stopFasting(){
 
-  }
+  void stopFasting() {}
 
   @override
   Widget build(BuildContext context) {
@@ -64,23 +64,28 @@ class _HomeState extends State<Home> {
           DropdownButton<String>(
             value: valueFast,
             hint: Text('Pilih'),
-            items: variantFast.map((value){
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value));
-            }).toList(), onChanged: (e){
+            items: variantFast.map((value) {
+              return DropdownMenuItem<String>(value: value, child: Text(value));
+            }).toList(),
+            onChanged: (e) {
               setState(() {
                 valueFast = e;
               });
-            }),
+            },
+          ),
           ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.blue),
             ),
-            onPressed: () {},
-            child: Text('Mulai', style: TextStyle(color: Colors.white70),),
-           
+            onPressed: () {
+              setState(() {
+                startFasting();
+              });
+            },
+            child: Text('Mulai', style: TextStyle(color: Colors.white70)),
           ),
+
+          Text(durationFast.toString()),
         ],
       ),
     );
