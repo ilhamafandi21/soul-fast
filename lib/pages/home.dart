@@ -10,6 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
+  String? buttonText;
   int durationFastToSecond = 0;
   int remainingSecond = 0;
   Timer? countdownTimer;
@@ -23,6 +25,15 @@ class _HomeState extends State<Home> {
     '48 Jam',
     '72 Jam',
   ];
+
+  String formatTime(int remainingSecond) {
+    final hours = remainingSecond ~/ 3600;
+    final minutes = (remainingSecond % 3600) ~/ 60;
+    final seconds = remainingSecond % 60;
+
+    // Format dengan 2 digit, misal 01:05:09
+    return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
 
   void startFasting() {
     switch (valueFast) {
@@ -76,34 +87,44 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: [
-          DropdownButton<String>(
-            value: valueFast,
-            hint: Text('Pilih'),
-            items: variantFast.map((value) {
-              return DropdownMenuItem<String>(value: value, child: Text(value));
-            }).toList(),
-            onChanged: (e) {
-              setState(() {
-                valueFast = e;
-              });
-            },
-          ),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.blue),
-            ),
-            onPressed: () {
-              setState(() {
-                startFasting();
-              });
-            },
-            child: Text('Mulai', style: TextStyle(color: Colors.white70)),
-          ),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 205, 223, 255),
+            borderRadius: BorderRadius.circular(20)
 
-          Text(durationFastToSecond.toString()),
-        ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DropdownButton<String>(
+                value: valueFast,
+                hint: Text('Pilih'),
+                items: variantFast.map((value) {
+                  return DropdownMenuItem<String>(value: value, child: Text(value));
+                }).toList(),
+                onChanged: (e) {
+                  setState(() {
+                    valueFast = e;
+                  });
+                },
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                ),
+                onPressed: () {
+                  startFasting();
+                },
+                child: Text('Mulai', style: TextStyle(color: Colors.white70)),
+              ),
+          
+              Text(formatTime(remainingSecond)),
+            ],
+          ),
+        ),
       ),
     );
   }
