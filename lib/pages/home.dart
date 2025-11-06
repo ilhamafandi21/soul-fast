@@ -10,8 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int? durationFastToSecond;
-  int? remainingSecond;
+  int durationFastToSecond = 0;
+  int remainingSecond = 0;
   Timer? countdownTimer;
 
   String? valueFast;
@@ -27,42 +27,41 @@ class _HomeState extends State<Home> {
   void startFasting() {
     switch (valueFast) {
       case '16/8':
-        durationFastToSecond = 16*3600;
+        durationFastToSecond = 16 * 3600;
         break;
       case '18/6':
-        durationFastToSecond = 18*3600;
+        durationFastToSecond = 18 * 3600;
         break;
       case '24 Jam':
-        durationFastToSecond = 24*3600;
+        durationFastToSecond = 24 * 3600;
         break;
       case '36 Jam':
-        durationFastToSecond = 36*3600;
+        durationFastToSecond = 36 * 3600;
         break;
       case '48 Jam':
-        durationFastToSecond = 48*3600;
+        durationFastToSecond = 48 * 3600;
         break;
       case '72 Jam':
-        durationFastToSecond = 72*3600;
+        durationFastToSecond = 72 * 3600;
         break;
       default:
-        durationFastToSecond = 0*3600;
+        durationFastToSecond = 0 * 3600;
         break;
     }
 
     setState(() {
-      remainingSecond = durationFastToSecond ?? 0;
+      remainingSecond = durationFastToSecond;
     });
 
-countdownTimer = Timer.periodic(Duration(seconds: 1), (e){
-  if(remainingSecond > 0){
-    setState(() {
-      remainingSecond--;
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (e) {
+      if (remainingSecond > 0) {
+        setState(() {
+          remainingSecond--;
+        });
+      } else {
+        e.cancel();
+      }
     });
-  }else{
-    e.cancel();
-  }
-});
-
   }
 
   void stopFasting() {}
@@ -103,7 +102,7 @@ countdownTimer = Timer.periodic(Duration(seconds: 1), (e){
             child: Text('Mulai', style: TextStyle(color: Colors.white70)),
           ),
 
-          Text(durationFast.toString()),
+          Text(durationFastToSecond.toString()),
         ],
       ),
     );
