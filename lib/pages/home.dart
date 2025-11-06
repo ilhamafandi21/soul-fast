@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -39,7 +40,11 @@ class _HomeState extends State<Home> {
               return DropdownMenuItem(
                 value: value,
                 child: Text(value));
-            }).toList(), onChanged: (e){}),
+            }).toList(), onChanged: (e){
+              setState(() {
+                valueFast = e;
+              });
+            }),
           ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.blue),
