@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soulfast/pages/main/main_page.dart';
+import 'package:soulfast/pages/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 135, 117, 76)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
       ),
-      home: MainPage(),
+      home: Home(),
     );
   }
 }
+
 
