@@ -10,7 +10,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int? durationFast;
+  int? durationFastToSecond;
+  int? remainingSecond;
+  Timer? countdownTimer;
+
   String? valueFast;
   List<String> variantFast = [
     '16/8',
@@ -24,27 +27,34 @@ class _HomeState extends State<Home> {
   void startFasting() {
     switch (valueFast) {
       case '16/8':
-        durationFast = 16;
+        durationFastToSecond = 16*3600;
         break;
       case '18/6':
-        durationFast = 18;
+        durationFastToSecond = 18*3600;
         break;
       case '24 Jam':
-        durationFast = 24;
+        durationFastToSecond = 24*3600;
         break;
       case '36 Jam':
-        durationFast = 36;
+        durationFastToSecond = 36*3600;
         break;
       case '48 Jam':
-        durationFast = 48;
+        durationFastToSecond = 48*3600;
         break;
       case '72 Jam':
-        durationFast = 72;
+        durationFastToSecond = 72*3600;
         break;
       default:
-        durationFast = 0;
+        durationFastToSecond = 0*3600;
         break;
     }
+
+    setState(() {
+      remainingSecond = durationFastToSecond ?? 0;
+    });
+
+countdownTimer
+
   }
 
   void stopFasting() {}
