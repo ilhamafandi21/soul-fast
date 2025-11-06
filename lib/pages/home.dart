@@ -22,9 +22,7 @@ class _HomeState extends State<Home> {
     '72 Jam',
   ];
 
-
-
-  void startFasting() {
+  void timerSet() {
     switch (selectedFast) {
       case '16/8':
         durationToSecond = 16 * 3600;
@@ -47,7 +45,9 @@ class _HomeState extends State<Home> {
       default:
         durationToSecond = 0 * 3600;
     }
+  }
 
+  void startFasting() {
     countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (durationToSecond > 0) {
         setState(() {
@@ -111,11 +111,12 @@ class _HomeState extends State<Home> {
                 onChanged: (e) {
                   setState(() {
                     selectedFast = e;
+                    timerSet();
                   });
                 },
               ),
             ),
-            Text(textTimer() ?? 'belum set pilihan'),
+            Text(durationToSecond.toString() ),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(Colors.cyan[100]),
