@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +9,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? selectedFasting;
+  int duration = 0;
   List<String> variantFasting = [
     '16/8',
     '18/6',
@@ -18,6 +18,31 @@ class _HomeState extends State<Home> {
     '48 Jam',
     '72 Jam',
   ];
+
+  void startFasting() {
+    switch (selectedFasting) {
+      case '16/8':
+        duration = 16 * 3600;
+        break;
+      case '18/6':
+        duration = 18 * 3600;
+        break;
+      case '24 Jam':
+        duration = 24 * 3600;
+        break;
+      case '36 Jam':
+        duration = 36 * 3600;
+        break;
+      case '48 Jam':
+        duration = 48 * 3600;
+        break;
+      case '72 Jam':
+        duration = 72 * 3600;
+        break;
+      default:
+        duration = 0;
+    }
+  }
 
   String formatTime(int remainingSecond) {
     final hours = remainingSecond ~/ 3600;
@@ -44,35 +69,44 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(color: Colors.blue[200]),
               child: Column(
                 children: [
-                  Container(
-                    height: 30,
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(50)
-                    ),
-                    child: DropdownButton<String>(
-                      borderRadius: BorderRadius.circular(50),
-                      value: selectedFasting,
-                      hint: Text('Select'),
-                      items: variantFasting.map((value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (e) {
-                        setState(() {
-                          selectedFasting = e;
-                        });
-                      },
-                    ),
+                  dropDownFasting(),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        startFasting();
+                      });
+                    },
+                    child: Text('Start'),
                   ),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container dropDownFasting() {
+    return Container(
+      height: 30,
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: DropdownButton<String>(
+        borderRadius: BorderRadius.circular(50),
+        value: selectedFasting,
+        hint: Text('Select'),
+        items: variantFasting.map((value) {
+          return DropdownMenuItem<String>(value: value, child: Text(value));
+        }).toList(),
+        onChanged: (e) {
+          setState(() {
+            selectedFasting = e;
+          });
+        },
       ),
     );
   }
