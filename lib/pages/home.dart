@@ -22,6 +22,15 @@ class _HomeState extends State<Home> {
     '72 Jam',
   ];
 
+  void stopFasting() {
+    // countdownFasting?.cancel();
+
+    countdownFasting?.cancel(); // hentikan timer
+    setState(() {
+      countdownFasting = null; // reset timer ke null
+    });
+  }
+
   void durationFasting() {
     switch (selectedFasting) {
       case '16/8':
@@ -49,12 +58,12 @@ class _HomeState extends State<Home> {
 
   void startFasting() {
     if (duration > 0) {
-      countdownFasting = Timer.periodic(Duration(seconds: 1),(timer) {
+      countdownFasting = Timer.periodic(Duration(seconds: 1), (timer) {
         setState(() {
           duration--;
         });
-        if(duration <= 1){
-        timer.cancel;
+        if (duration <= 1) {
+          timer.cancel();
         }
       });
     }
@@ -86,14 +95,23 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   dropDownFasting(),
-                  Text(duration.toString()),
+                  Text(formatTime(duration).toString()),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
+                      if (countdownFasting != null &&
+                          countdownFasting!.isActive) {
+                        // Kalau sedang berjalan, hentikan
+                        stopFasting();
+                      } else {
+                        // Kalau belum berjalan, mulai
                         startFasting();
-                      });
+                      }
                     },
-                    child: Text('Start'),
+                    child: Text(
+                      (countdownFasting != null && countdownFasting!.isActive)
+                          ? 'Cancel'
+                          : 'Start',
+                    ),
                   ),
                 ],
               ),
@@ -121,8 +139,10 @@ class _HomeState extends State<Home> {
         }).toList(),
         onChanged: (e) {
           setState(() {
+            countdownFasting?.cancel();
+
             selectedFasting = e;
-            
+            durationFasting();
           });
         },
       ),
