@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -8,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Timer? countdownFasting;
   String? selectedFasting;
   int duration = 0;
   List<String> variantFasting = [
@@ -19,7 +22,7 @@ class _HomeState extends State<Home> {
     '72 Jam',
   ];
 
-  void startFasting() {
+  void durationFasting() {
     switch (selectedFasting) {
       case '16/8':
         duration = 16 * 3600;
@@ -41,6 +44,19 @@ class _HomeState extends State<Home> {
         break;
       default:
         duration = 0;
+    }
+  }
+
+  void startFasting() {
+    if (duration > 0) {
+      countdownFasting = Timer.periodic(Duration(seconds: 1),(timer) {
+        setState(() {
+          duration--;
+        });
+        if(duration <= 1){
+        timer.cancel;
+        }
+      });
     }
   }
 
@@ -70,6 +86,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   dropDownFasting(),
+                  Text(duration.toString()),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -105,6 +122,7 @@ class _HomeState extends State<Home> {
         onChanged: (e) {
           setState(() {
             selectedFasting = e;
+            
           });
         },
       ),
