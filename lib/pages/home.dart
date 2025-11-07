@@ -9,9 +9,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
- 
-
-
+  String? selectedFasting;
+  List<String> variantFasting = [
+    '16/8',
+    '18/6',
+    '24 Jam',
+    '36 Jam',
+    '48 Jam',
+    '72 Jam',
+  ];
 
   String formatTime(int remainingSecond) {
     final hours = remainingSecond ~/ 3600;
@@ -25,24 +31,46 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SoulFast'),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: AppBar(title: Text('SoulFast'), backgroundColor: Colors.blue),
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.blue[300],
-        ),
+        decoration: BoxDecoration(color: Colors.blue[300]),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.amber[300],
+              height: 300,
+              width: 300,
+              decoration: BoxDecoration(color: Colors.blue[200]),
+              child: Column(
+                children: [
+                  Container(
+                    height: 30,
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: DropdownButton<String>(
+                      borderRadius: BorderRadius.circular(50),
+                      value: selectedFasting,
+                      hint: Text('Select'),
+                      items: variantFasting.map((value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (e) {
+                        setState(() {
+                          selectedFasting = e;
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
