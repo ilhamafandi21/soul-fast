@@ -39,15 +39,15 @@ class _HomeState extends State<Home> {
             DropdownButton<String>(
               value: selectedFast,
               hint: Text('Select'),
-              items: variantFast.map((value) {
+              items: variantFast.map((listFasting) {
                 return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value.toString()),
+                  value: listFasting,
+                  child: Text(listFasting.toString()),
                 );
               }).toList(),
-              onChanged: (value) {
+              onChanged: (valueSelectedFasting) {
                 setState(() {
-                  selectedFast = value.toString();
+                  selectedFast = valueSelectedFasting.toString();
                 });
               },
             ),
