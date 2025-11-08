@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
       case '36 Jam':
         duration = 36 * 3600;
         break;
-      case '48 ':
+      case '48 Jam':
         duration = 48 * 3600;
         break;
       case '72 Jam':
