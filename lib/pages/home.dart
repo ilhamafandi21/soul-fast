@@ -95,7 +95,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   dropDownFasting(),
-                  Text(formatTime(duration).toString()),
+                  Text(formatTime(duration).()),
                   ElevatedButton(
                     onPressed: () {
                       if (countdownFasting != null &&
