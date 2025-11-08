@@ -11,6 +11,7 @@ class DropdownWidget extends StatefulWidget {
 
 class _DropdownWidgetState extends State<DropdownWidget> {
   String? selectedFast;
+  String? buttonText;
   int durationFasting = 0;
   Timer? countdownFast;
 
@@ -57,8 +58,11 @@ class _DropdownWidgetState extends State<DropdownWidget> {
       setState(() {
         if (durationFasting > 0) {
           durationFasting--;
+          buttonText = 'Stop';
+
         } else {
           e.cancel();
+          buttonText = 'Pilih dulu fasting';
         }
       });
     });
@@ -99,6 +103,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
             setState(() {
               selectedFast = valueSelectedFasting.toString();
               sumDurationFasting();
+              buttonText = 'Start';
             });
           },
         ),
@@ -113,8 +118,8 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                 : startFasting();
           },
           child: Text(
-            (countdownFast != null) ? 'Stop' : 'Start',
-            style: TextStyle(color: Colors.),
+            (countdownFast != null) ? buttonText.toString() : 'Start',
+            style: TextStyle(color: Colors.white),
           ),
         ),
         Text(formatTime(durationFasting)),
