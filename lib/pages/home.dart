@@ -122,7 +122,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Container dropDownFasting() {
+  Container () {
     return Container(
       height: 30,
       padding: EdgeInsets.all(5),
