@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
                     child: Text(
                       (countdownFasting != null && countdownFasting!.isActive)
                           ? 'Cancel'
-                          : 'Start',
+                          : '',
                     ),
                   ),
                 ],
