@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class DropdownWidget extends StatefulWidget {
+
   const DropdownWidget({super.key});
 
   @override
