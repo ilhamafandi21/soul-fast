@@ -95,18 +95,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
           hint: Text('Select'),
           items: variantFast.map((listFasting) {
             return DropdownMenuItem<String>(
-              value: listFasting,
-              child: Text(listFasting.toString()),
-            );
-          }).toList(),
-          onChanged: (valueSelectedFasting) {
-            setState(() {
-              selectedFast = valueSelectedFasting.toString();
-              sumDurationFasting();
-              buttonText = 'Start';
-            });
-          },
-        ),
+              val
 
         ElevatedButton(
           style: ButtonStyle(
