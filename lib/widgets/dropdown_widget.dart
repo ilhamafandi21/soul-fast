@@ -58,7 +58,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
       setState(() {
         if (durationFasting > 0) {
           durationFasting--;
-          buttonText = '';
+          buttonText = 'Stop';
 
         } else {
           e.cancel();
