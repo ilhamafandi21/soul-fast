@@ -103,7 +103,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
             setState(() {
               selectedFast = valueSelectedFasting.toString();
               sumDurationFasting();
-              buttonText = '';
+              buttonText = 'Start';
             });
           },
         ),
