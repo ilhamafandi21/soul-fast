@@ -62,7 +62,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
 
         } else {
           e.cancel();
-          buttonText = 'Pilih dulu ';
+          buttonText = 'Pilih dulu fasting';
         }
       });
     });
