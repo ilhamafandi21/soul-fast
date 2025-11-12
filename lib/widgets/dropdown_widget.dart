@@ -110,13 +110,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
 
         ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Colors.blue),
-          ),
-          onPressed: () {
-            (countdownFast != null && countdownFast!.isActive)
-                ? stopFasting()
-                : startFasting();
-          },
+            backgrou
           child: Text(
             (countdownFast != null) ? buttonText.toString() : 'Start',
             style: TextStyle(color: Colors.white),
