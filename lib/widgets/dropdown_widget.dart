@@ -122,7 +122,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        Text(formatTime(durationFasting)),
+        Text(formatTime()),
       ],
     );
   }
