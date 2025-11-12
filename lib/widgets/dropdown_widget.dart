@@ -118,7 +118,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                 : startFasting();
           },
           child: Text(
-            (countdownFast != null) ? buttonText.toString() : '',
+            (countdownFast != null) ? buttonText.toString() : 'Start',
             style: TextStyle(color: Colors.white),
           ),
         ),
