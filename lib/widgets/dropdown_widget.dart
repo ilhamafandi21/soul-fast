@@ -90,22 +90,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DropdownButton<String>(
-          value: selectedFast,
-          hint: Text('Select'),
-          items: variantFast.map((listFasting) {
-            return DropdownMenuItem<String>(
-              value: listFasting,
-              child: Text(listFasting.toString()),
-            );
-          }).toList(),
-          onChanged: (valueSelectedFasting) {
-            setState(() {
-              selectedFast = valueSelectedFasting.toString();
-              sumDurationFasting();
-              buttonText = 'Start';
-            });
-          },
+        DropdownButton<Strin
         ),
 
         ElevatedButton(
