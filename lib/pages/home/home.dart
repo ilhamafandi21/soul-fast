@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -66,6 +67,21 @@ class _HomeState extends State<Home> {
         setState(() {
           duration--;
         });
+      } else if (duration == 0) {
+        setState(() {
+          timer.cancel();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Puasa selesai!, silhakan pilih durasi fasting baru',
+              ),
+            ),
+          );
+        });
+      } else if (duration < 1) {
+        setState(() {
+          timer.cancel();
+        });
       }
     });
   }
@@ -86,33 +102,52 @@ class _HomeState extends State<Home> {
         child: SafeArea(
           child: Center(
             child: Container(
-              height: 500,
+              height: 200,
               width: 300,
               margin: EdgeInsets.all(5),
               decoration: BoxDecoration(color: Colors.blue),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  DropdownButton(
-                    value: selectedFasting,
-                    hint: Text('Select'),
-                    items: variantFasting.map((value) {
-                      return DropdownMenuItem(value: value, child: Text(value));
-                    }).toList(),
-                    onChanged: (e) {
-                      setState(() {
-                        selectedFasting = e;
-                        durationFasting();
-                        duration;
-                        stopFasting();
-                      });
-                    },
-                  ),
-                  Text(formatTime(duration)),
-                  ElevatedButton(
-                    onPressed: () {
-                      startFasting();
-                    },
-                    child: Text('Start'),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent
+                    ),
+                    child: Column(
+                      children: [
+                        Text('Select the variant fasting: '),
+                        DropdownButton(
+                          
+                          value: selectedFasting,
+                          hint: Text('Select'),
+                          items: variantFasting.map((value) {
+                            return DropdownMenuItem(value: value, child: Text(value));
+                          }).toList(),
+                          onChanged: (e) {
+                            setState(() {
+                              selectedFasting = e;
+                              durationFasting();
+                              duration;
+                              stopFasting();
+                            });
+                          },
+                        ),
+                        Text(formatTime(duration)),
+                        ElevatedButton(
+                          
+                          onPressed: () {
+                            (countdownTimer != null && countdownTimer!.isActive)
+                                ? stopFasting()
+                                : startFasting();
+                          },
+                          child: Text(
+                            (countdownTimer != null && countdownTimer!.isActive)
+                                ? 'Stop'
+                                : 'Start',
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
