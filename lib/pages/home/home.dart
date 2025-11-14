@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,7 +12,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int duration = 0;
   String? selectedFasting;
+  Timer? countdownTimer;
   List<String> variantFasting = [
+    '5 Detik',
     '16/8',
     '18/6',
     '24 Jam',
@@ -21,6 +25,9 @@ class _HomeState extends State<Home> {
 
   void durationFasting() {
     switch (selectedFasting) {
+      case '5 Detik':
+        duration = 5;
+        break;
       case '16/8':
         duration = 16 * 3600;
         break;
@@ -41,6 +48,36 @@ class _HomeState extends State<Home> {
         break;
       default:
         duration = 0;
+    }
+  }
+
+  String formatTime(int remainingSecond) {
+    final hours = remainingSecond ~/ 3600;
+    final minutes = (remainingSecond % 3600) ~/ 60;
+    final seconds = remainingSecond % 60;
+
+    // Format dengan 2 digit, misal 01:05:09
+    return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  void startFasting() {
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (duration > 0) {
+        setState(() {
+          duration--;
+        });
+      } else {
+        setState(() {
+          timer.cancel();
+        });
+      }
+    });
+  }
+
+
+  void stopFasting(){
+    if(countdownTimer != null && countdownTimer!.isActive){
+      countdownTimer!.cancel();
     }
   }
 
@@ -67,11 +104,18 @@ class _HomeState extends State<Home> {
                     onChanged: (e) {
                       setState(() {
                         selectedFasting = e;
+                        durationFasting();
+                        duration;
+                        stopFasting();
                       });
                     },
                   ),
-                  Text('Timer'),
-                  ElevatedButton(onPressed: () {}, child: Text('Start')),
+                  Text(formatTime(duration)),
+                  ElevatedButton(onPressed: () {
+                    setState(() {
+                      startFasting();
+                    });
+                  }, child: Text('Start')),
                 ],
               ),
             ),
