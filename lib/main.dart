@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soulfast/pages/home.dart';
+import 'package:soulfast/pages/home/home.dart';
 
 void main() {
   runApp(const MyApp());
