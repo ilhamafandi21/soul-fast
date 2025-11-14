@@ -61,22 +61,13 @@ class _HomeState extends State<Home> {
   }
 
   void startFasting() {
-    if (countdownTimer != null && countdownTimer!.isActive) {
-      setState(() {
-        countdownTimer!.cancel();
-        countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-          if (duration > 0) {
-            setState(() {
-              duration--;
-            });
-          } else {
-            setState(() {
-              timer.cancel();
-            });
-          }
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (duration > 0) {
+        setState(() {
+          duration--;
         });
-      });
-    }
+      }
+    });
   }
 
   void stopFasting() {
@@ -119,9 +110,7 @@ class _HomeState extends State<Home> {
                   Text(formatTime(duration)),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        startFasting();
-                      });
+                      startFasting();
                     },
                     child: Text('Start'),
                   ),
