@@ -126,25 +126,7 @@ class _HomeState extends State<Home> {
                           onChanged: (e) {
                             setState(() {
                               selectedFasting = e;
-                              durationFasting();
-                              duration;
-                              stopFasting();
-                            });
-                          },
-                        ),
-                        Text(formatTime(duration)),
-                        ElevatedButton(
-                          
-                          onPressed: () {
-                            (countdownTimer != null && countdownTimer!.isActive)
-                                ? stopFasting()
-                                : startFasting();
-                          },
-                          child: Text(
-                            (countdownTimer != null && countdownTimer!.isActive)
-                                ? 'Stop'
-                                : 'Start',
-                          ),
+                  
                         ),
                       ],
                     ),
