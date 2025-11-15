@@ -92,7 +92,30 @@ class _HomeState extends State<Home> {
         countdownTimer!.cancel();
       });
     }
- '),
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('SoulFast!'), backgroundColor: Colors.amber),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Center(
+            child: Container(
+              height: 200,
+              width: 300,
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent
+                    ),
+                    child: Column(
+                      children: [
+                        Text('Select the variant fasting: '),
                         DropdownButton(
                           
                           value: selectedFasting,
