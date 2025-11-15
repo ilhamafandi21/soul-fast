@@ -55,41 +55,7 @@ class _HomeState extends State<Home> {
   String formatTime(int remainingSecond) {
     final hours = remainingSecond ~/ 3600;
     final minutes = (remainingSecond % 3600) ~/ 60;
-    final seconds = remainingSecond % 60;
-
-    // Format dengan 2 digit, misal 01:05:09
-    return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-  }
-
-  void startFasting() {
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (duration > 0) {
-        setState(() {
-          duration--;
-        });
-      } else if (duration == 0) {
-        setState(() {
-          timer.cancel();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Puasa selesai!, silhakan pilih durasi fasting baru',
-              ),
-            ),
-          );
-        });
-      } else if (duration < 1) {
-        setState(() {
-          timer.cancel();
-        });
-      }
-    });
-  }
-
-  void stopFasting() {
-    if (countdownTimer != null && countdownTimer!.isActive) {
-      setState(() {
-        countdownTimer!.cancel();
+    final seconds = 
       });
     }
   }
