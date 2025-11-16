@@ -142,15 +142,7 @@ class _HomeState extends State<Home> {
                           },
                           child: Text(
                             (countdownTimer != null && countdownTimer!.isActive)
-                                ? 'Stop'
-                                : 'Start',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+          
             ),
           ),
         ),
