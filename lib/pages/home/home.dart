@@ -62,6 +62,72 @@ class _HomeState extends State<Home> {
   }
 
   void startFasting() {
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (duration > 0) {
+        setState(() {
+          duration--;
+        });
+      } else if (duration == 0) {
+        setState(() {
+          timer.cancel();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Puasa selesai!, silhakan pilih durasi fasting baru',
+              ),
+            ),
+          );
+        });
+      } else if (duration < 1) {
+        setState(() {
+          timer.cancel();
+        });
+      }
+    });
+  }
+
+  void stopFasting() {
+    if (countdownTimer != null && countdownTimer!.isActive) {
+      setState(() {
+        countdownTimer!.cancel();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('SoulFast!'), backgroundColor: Colors.amber),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Center(
+            child: Container(
+              height: 200,
+              width: 300,
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent
+                    ),
+                    child: Column(
+                      children: [
+                        Text('Select the variant fasting: '),
+                        DropdownButton(
+                          
+                          value: selectedFasting,
+                          hint: Text('Select'),
+                          items: variantFasting.map((value) {
+                            return DropdownMenuItem(value: value, child: Text(value));
+                          }).toList(),
+                          onChanged: (e) {
+                            setState(() {
+                              selectedFasting = e;
+                              durationFasting();
+                              duration;
                               stopFasting();
                             });
                           },
