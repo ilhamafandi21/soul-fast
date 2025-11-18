@@ -16,33 +16,7 @@ class _HomeState extends State<Home> {
   Timer? countdownTimer;
   
 
-  void durationFasting() {
-    switch (selectedFasting) {
-      case '5 Detik':
-        duration = 5;
-        break;
-      case '16/8':
-        duration = 16 * 3600;
-        break;
-      case '18/6':
-        duration = 18 * 3600;
-        break;
-      case '24 Jam':
-        duration = 24 * 3600;
-        break;
-      case '36 Jam':
-        duration = 36 * 3600;
-        break;
-      case '48 Jam':
-        duration = 48 * 3600;
-        break;
-      case '72 Jam':
-        duration = 72 * 3600;
-        break;
-      default:
-        duration = 0;
-    }
-  }
+ 
 
   String formatTime(int remainingSecond) {
     final hours = remainingSecond ~/ 3600;
