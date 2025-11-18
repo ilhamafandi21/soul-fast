@@ -18,11 +18,7 @@ class _HomeState extends State<Home> {
     '5 Detik',
     '16/8',
     '18/6',
-    '24 Jam',
-    '36 Jam',
-    '48 Jam',
-    '72 Jam',
-  ];
+    '24
 
   void durationFasting() {
     switch (selectedFasting) {
