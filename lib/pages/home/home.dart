@@ -27,14 +27,7 @@ class _HomeState extends State<Home> {
 
   
 
-  void stopFasting() {
-    if (countdownTimer != null && countdownTimer!.isActive) {
-      setState(() {
-        countdownTimer!.cancel();
-      });
-    }
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
