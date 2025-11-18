@@ -11,9 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int duration = 0;
-  String? selectedFasting;
-  Timer? countdownTimer;
+
   
 
  
