@@ -70,7 +70,14 @@ class _HomeState extends State<Home> {
       } else if (duration == 0) {
         setState(() {
           timer.cancel();
-          ScaffoldMesse
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Puasa selesai!, silhakan pilih durasi fasting baru',
+              ),
+            ),
+          );
+        });
       } else if (duration < 1) {
         setState(() {
           timer.cancel();
