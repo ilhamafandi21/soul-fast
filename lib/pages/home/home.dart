@@ -25,9 +25,39 @@ class _HomeState extends State<Home> {
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
-  
+  void startFasting() {
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (duration > 0) {
+        setState(() {
+          duration--;
+        });
+      } else if (duration == 0) {
+        setState(() {
+          timer.cancel();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Puasa selesai!, silhakan pilih durasi fasting baru',
+              ),
+            ),
+          );
+        });
+      } else if (duration < 1) {
+        setState(() {
+          timer.cancel();
+        });
+      }
+    });
+  }
 
-  
+  void stopFasting() {
+    if (countdownTimer != null && countdownTimer!.isActive) {
+      setState(() {
+        countdownTimer!.cancel();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
