@@ -27,7 +27,11 @@ class _HomeState extends State<Home> {
   void durationFasting() {
     switch (selectedFasting) {
       case '5 Detik':
-        duration =
+        duration = 5;
+        break;
+      case '16/8':
+        duration = 16 * 3600;
+        break;
       case '18/6':
         duration = 18 * 3600;
         break;
