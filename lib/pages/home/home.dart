@@ -136,13 +136,7 @@ class _HomeState extends State<Home> {
                         ElevatedButton(
                           
                           onPressed: () {
-                            (countdownTimer != null && countdownTimer!.isActive)
-                                ? stopFasting()
-                                : startFasting();
-                          },
-                          child: Text(
-                            (countdownTimer != null && countdownTimer!.isActive)
-                                ? 'Stop'
+                           
                                 : 'Start',
                           ),
                         ),
