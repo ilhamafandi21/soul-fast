@@ -118,7 +118,12 @@ class _HomeState extends State<Home> {
                         Text('Select the variant fasting: '),
                         DropdownButton(
                           
-                         
+                          value: selectedFasting,
+                          hint: Text('Select'),
+                          items: variantFasting.map((value) {
+                            return DropdownMenuItem(value: value, child: Text(value));
+                          }).toList(),
+                          onChanged: (e) {
                             setState(() {
                               selectedFasting = e;
                               durationFasting();
