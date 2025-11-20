@@ -124,7 +124,11 @@ class _HomeState extends State<Home> {
                             return DropdownMenuItem(value: value, child: Text(value));
                           }).toList(),
                           onChanged: (e) {
-                      
+                            setState(() {
+                              selectedFasting = e;
+                              durationFasting();
+                              duration;
+                              stopFasting();
                             });
                           },
                         ),
