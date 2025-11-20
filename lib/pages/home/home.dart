@@ -74,7 +74,12 @@ class _HomeState extends State<Home> {
             SnackBar(
               content: Text(
                 'Puasa selesai!, silhakan pilih durasi fasting baru',
-            
+              ),
+            ),
+          );
+        });
+      } else if (duration < 1) {
+        setState(() {
           timer.cancel();
         });
       }
