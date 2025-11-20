@@ -98,13 +98,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('SoulFast!'), backgroundColor: Colors.amber),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Container(
-              height: 200,
-              width: 300,
-              margin: EdgeInsets.all(5),
+      body: geInsets.all(5),
               decoration: BoxDecoration(color: Colors.blue),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
