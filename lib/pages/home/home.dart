@@ -72,13 +72,7 @@ class _HomeState extends State<Home> {
           timer.cancel();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                'Puasa selesai!, silhakan pilih durasi fasting baru',
-              ),
-            ),
-          );
-        });
-      } else if (duration < 1) {
+              co
         setState(() {
           timer.cancel();
         });
