@@ -13,7 +13,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int duration = 0;
   String? selectedFasting;
-  Timer? countd
+  Timer? countdownTimer;
+
+  List<String> variantFasting = [
+    '5 detik',
+    '16/8',
+    '18/6',
+    '24 Jam',
     '36 Jam',
     '48 Jam',
     '72 Jam',
@@ -24,13 +30,23 @@ class _HomeState extends State<Home> {
       case '5 Detik':
         duration = 5;
         break;
-
+      case '16/8':
+        duration = 16 * 3600;
+        break;
+      case '18/6':
+        duration = 18 * 3600;
+        break;
+      case '24 Jam':
+        duration = 24 * 3600;
+        break;
       case '36 Jam':
         duration = 36 * 3600;
         break;
-      case '48 Jam':
-        duration = 48 * 3600;
+      case '72 Jam':
+        duration = 72 * 3600;
         break;
+      default:
+        duration = 0;
     }
   }
 
@@ -43,64 +59,29 @@ class _HomeState extends State<Home> {
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
-  void startFasting() {
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (duration > 0) {
-        setState(() {
-          duration--;
-        });
-              content: Text(
-                'Puasa selesai!, silhakan pilih durasi fasting baru',
-              ),
-            ),
-          );
-        });
-      } else if (duration < 1) {
-        setState(() {
-          timer.cancel();
-        });
-      }
-    });
-  }
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('SoulFast!'), backgroundColor: Colors.amber),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Container(
-              height: 200,
-              width: 300,
-           
-                    child: Column(
-                      children: [
-                        Text('Select the variant fasting: '),
-                        DropdownButton(
-                          
-                         
-                              selectedFasting = e;
-                              durationFasting();
-                              duration;
-                              stopFasting();
-                            });
-                          },
-                        ),
-                        Text(formatTime(duration)),
-                        ElevatedButton(
-                          
-                          onPressed: () {
-                            (countdownTimer != null && countdownTimer!.isActive)
-                                ? stopFasting()
-                                :
-                        ),
-                      ],
+        child: SafeArea(child: Container(child: Column(
+          children: [
+            DropdownButton(
+              value: selectedFasting,
+              hint: Text('Select'),
+              items: variantFasting.map((value){
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value));
+              }).toList(), onChanged: (e){
+                setState(() {
+                  selectedFasting = e;
+                });
+              }),
+
               
-          ),
-        ),
+          ],
+        ))),
       ),
     );
   }
