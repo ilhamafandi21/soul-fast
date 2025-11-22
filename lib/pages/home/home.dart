@@ -86,12 +86,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void stopFasting() {
-    if (countdownTimer != null && countdownTimer!.isActive) {
-      setState(() {
-        countdownTimer!.cancel();
-      });
-    }
   }
 
   @override
