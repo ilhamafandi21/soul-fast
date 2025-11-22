@@ -13,12 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int duration = 0;
   String? selectedFasting;
-  Timer? countdownTimer;
-  List<String> variantFasting = [
-    '5 Detik',
-    '16/8',
-    '18/6',
-    '24 Jam',
+  Timer? countd
     '36 Jam',
     '48 Jam',
     '72 Jam',
@@ -29,26 +24,13 @@ class _HomeState extends State<Home> {
       case '5 Detik':
         duration = 5;
         break;
-      case '16/8':
-        duration = 16 * 3600;
-        break;
-      case '18/6':
-        duration = 18 * 3600;
-        break;
-      case '24 Jam':
-        duration = 24 * 3600;
-        break;
+
       case '36 Jam':
         duration = 36 * 3600;
         break;
       case '48 Jam':
         duration = 48 * 3600;
         break;
-      case '72 Jam':
-        duration = 72 * 3600;
-        break;
-      default:
-        duration = 0;
     }
   }
 
