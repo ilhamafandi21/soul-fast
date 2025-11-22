@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int duration = 0;
   String? selectedFasting;
+  String? buttonText;
   Timer? countdownTimer;
 
   List<String> variantFasting = [
@@ -60,26 +61,26 @@ class _HomeState extends State<Home> {
   }
 
   void startFasting() {
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer){
-      if(duration > 0){
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (duration > 0) {
         setState(() {
-          duration-- ;
+          duration--;
         });
-      }else{
-        timer.cancel();
+      } else {
+        setState(() {
+          timer.cancel();
+        });
       }
     });
   }
 
-
-void stopFasting(){
-  if(countdownTimer != null && countdownTimer!.isActive){
-    setState(() {
-      countdownTimer!.cancel();
-    });
+  void stopFasting() {
+    if (countdownTimer != null && countdownTimer!.isActive) {
+      setState(() {
+        countdownTimer!.cancel();
+      });
+    }
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,13 +101,17 @@ void stopFasting(){
                     setState(() {
                       selectedFasting = e;
                       durationFasting();
+                      stopFasting();
                     });
                   },
                 ),
                 Text(formatTime(duration).toString()),
-                ElevatedButton(onPressed: () {
-                  startFasting();
-                }, child: Text('Start')),
+                ElevatedButton(
+                  onPressed: () {
+                    startFasting();
+                  },
+                  child: Text(),
+                ),
               ],
             ),
           ),
