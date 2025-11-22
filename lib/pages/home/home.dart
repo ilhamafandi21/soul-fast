@@ -67,11 +67,6 @@ class _HomeState extends State<Home> {
         setState(() {
           duration--;
         });
-      } else if (duration == 0) {
-        setState(() {
-          timer.cancel();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
               content: Text(
                 'Puasa selesai!, silhakan pilih durasi fasting baru',
               ),
