@@ -88,39 +88,46 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text('SoulFast!'), backgroundColor: Colors.amber),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Container(
-            child: Column(
-              children: [
-                DropdownButton(
-                  value: selectedFasting,
-                  hint: Text('Select'),
-                  items: variantFasting.map((value) {
-                    return DropdownMenuItem(value: value, child: Text(value));
-                  }).toList(),
-                  onChanged: (e) {
-                    setState(() {
-                      selectedFasting = e;
-                      durationFasting();
-                      stopFasting();
-                    });
-                  },
-                ),
-                Text(formatTime(duration).toString()),
-                ElevatedButton(
-                  onPressed: () {
-                    if(countdownTimer != null && countdownTimer!.isActive){
-                      stopFasting();
-                    }else{
-                      startFasting();
-                    }
-                  },
-                  child: Text(
-                    (countdownTimer != null && countdownTimer!.isActive)
-                        ? 'Stop'
-                        : 'Start',
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                
+                color: const Color.fromARGB(255, 37, 255, 150)
+              ),
+              child: Column(
+                children: [
+                  DropdownButton(
+                    value: selectedFasting,
+                    hint: Text('Select'),
+                    items: variantFasting.map((value) {
+                      return DropdownMenuItem(value: value, child: Text(value));
+                    }).toList(),
+                    onChanged: (e) {
+                      setState(() {
+                        selectedFasting = e;
+                        durationFasting();
+                        stopFasting();
+                      });
+                    },
                   ),
-                ),
-              ],
+                  Text(formatTime(duration).toString()),
+                  ElevatedButton(
+                    onPressed: () {
+                      if(countdownTimer != null && countdownTimer!.isActive){
+                        stopFasting();
+                      }else{
+                        startFasting();
+                      }
+                    },
+                    child: Text(
+                      (countdownTimer != null && countdownTimer!.isActive)
+                          ? 'Stop'
+                          : 'Start',
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
