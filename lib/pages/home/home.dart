@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 
-                color: const Color.fromARGB(255, 37, 255, 150)
+                color: const Color., 255, 150)
               ),
               child: Column(
                 children: [
