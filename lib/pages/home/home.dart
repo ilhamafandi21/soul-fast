@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
 
   void durationFasting() {
     switch (selectedFasting) {
-      case '5 Detik':
+      case '5 detik':
         duration = 5;
         break;
       case '16/8':
@@ -59,29 +59,52 @@ class _HomeState extends State<Home> {
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
+  void startFasting() {
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer){
+      if(duration > 0){
+        setState(() {
+          duration-- ;
+        });
+      }else{
+        timer.cancel();
+      }
+    });
+  }
+
+
+void
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('SoulFast!'), backgroundColor: Colors.amber),
       body: SingleChildScrollView(
-        child: SafeArea(child: Container(child: Column(
-          children: [
-            DropdownButton(
-              value: selectedFasting,
-              hint: Text('Select'),
-              items: variantFasting.map((value){
-                return DropdownMenuItem(
-                  value: value,
-                  child: Text(value));
-              }).toList(), onChanged: (e){
-                setState(() {
-                  selectedFasting = e;
-                });
-              }),
-
-              
-          ],
-        ))),
+        child: SafeArea(
+          child: Container(
+            child: Column(
+              children: [
+                DropdownButton(
+                  value: selectedFasting,
+                  hint: Text('Select'),
+                  items: variantFasting.map((value) {
+                    return DropdownMenuItem(value: value, child: Text(value));
+                  }).toList(),
+                  onChanged: (e) {
+                    setState(() {
+                      selectedFasting = e;
+                      durationFasting();
+                    });
+                  },
+                ),
+                Text(formatTime(duration).toString()),
+                ElevatedButton(onPressed: () {
+                  startFasting();
+                }, child: Text('Start')),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
