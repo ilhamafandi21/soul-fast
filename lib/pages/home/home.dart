@@ -118,13 +118,7 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             (countdownTimer != null && countdownTimer!.isActive)
                                 ? stopFasting()
-                                : startFasting();
-                          },
-                          child: Text(
-                            (countdownTimer != null && countdownTimer!.isActive)
-                                ? 'Stop'
-                                : 'Start',
-                          ),
+                                :
                         ),
                       ],
                     ),
