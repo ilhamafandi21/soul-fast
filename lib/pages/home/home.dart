@@ -67,7 +67,13 @@ class _HomeState extends State<Home> {
   }
 
   void startFasting() {
-    countdo
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (durationFasting > 0) {
+          durationFasting--;
+        } else {
+          countdownTimer!.cancel();
+        }
       });
     });
   }
