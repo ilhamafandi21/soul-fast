@@ -87,6 +87,12 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 158, 205, 243),
+        title: Text('Fasting App'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
