@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,8 +12,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String? selectedVariant;
   int durationFasting = 0;
+  Timer? countdownTimer;
   List<DropdownMenuItem<String>> get variantFasting {
     List<String> variants = [
+      '5 Seconds',
       '16/8',
       '18/6',
       '20/4',
@@ -28,6 +32,9 @@ class _HomeState extends State<Home> {
 
   void updateDurationFasting(String? variant) {
     switch (variant) {
+      case '5 Seconds':
+        durationFasting = 5;
+        break;
       case '16/8':
         durationFasting = 16 * 3600;
         break;
@@ -57,6 +64,22 @@ class _HomeState extends State<Home> {
     final seconds = remainingSecond % 60;
     // Format dengan 2 digit, misal 01:05:09
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  void startFasting() {
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (durationFasting > 0) {
+          durationFasting--;
+        } else {
+          countdownTimer?.cancel();
+        }
+      });
+    });
+  }
+
+  void stopFasting() {
+    countdownTimer?.cancel();
   }
 
   @override
@@ -89,10 +112,16 @@ class _HomeState extends State<Home> {
                         setState(() {
                           selectedVariant = value;
                           updateDurationFasting(value);
+                          stopFasting();
                         });
                       },
                     ),
-                    ElevatedButton(onPressed: () {}, child: Text('Start')),
+                    ElevatedButton(
+                      onPressed: () {
+                        startFasting();
+                      },
+                      child: Text('Start'),
+                    ),
                   ],
                 ),
               ),
