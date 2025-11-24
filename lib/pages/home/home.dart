@@ -129,6 +129,13 @@ class _HomeState extends State<Home> {
                           startFasting();
                         }
                       },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(
+                          (countdownTimer != null && countdownTimer!.isActive)
+                              ? const Color.fromARGB(255, 249, 97, 86)
+                              : const Color.fromARGB(255, 58, 228, 58),
+                        ),
+                      ),
                       child: Text(
                         (countdownTimer != null && countdownTimer!.isActive)
                             ? 'Stop'
