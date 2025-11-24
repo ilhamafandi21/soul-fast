@@ -95,71 +95,80 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 151, 201, 242),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 10,
-                  children: [
-                    DropdownButton<String>(
-                      hint: Text('Select'),
-                      value: selectedVariant,
-                      items: variantFasting,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedVariant = value;
-                          updateDurationFasting(value);
-                          stopFasting();
-                        });
-                      },
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (countdownTimer != null &&
-                            countdownTimer!.isActive) {
-                          stopFasting();
-                        } else {
-                          startFasting();
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
+          child: Container(
+            margin: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color:  const Color.fromARGB(255, 149, 177, 248),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              spacing: 5,
+              children: [
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 151, 201, 242),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 10,
+                    children: [
+                      DropdownButton<String>(
+                        hint: Text('Select'),
+                        value: selectedVariant,
+                        items: variantFasting,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedVariant = value;
+                            updateDurationFasting(value);
+                            stopFasting();
+                          });
+                        },
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (countdownTimer != null &&
+                              countdownTimer!.isActive) {
+                            stopFasting();
+                          } else {
+                            startFasting();
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all(
+                            (countdownTimer != null && countdownTimer!.isActive)
+                                ? const Color.fromARGB(255, 249, 97, 86)
+                                : const Color.fromARGB(255, 58, 228, 58),
+                          ),
+                        ),
+                        child: Text(
                           (countdownTimer != null && countdownTimer!.isActive)
-                              ? const Color.fromARGB(255, 249, 97, 86)
-                              : const Color.fromARGB(255, 58, 228, 58),
+                              ? 'Stop'
+                              : 'Start',
                         ),
                       ),
-                      child: Text(
-                        (countdownTimer != null && countdownTimer!.isActive)
-                            ? 'Stop'
-                            : 'Start',
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 151, 201, 242),
-                  borderRadius: BorderRadius.circular(10),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 151, 201, 242),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Duration: ${formatTime(durationFasting).toString()}'),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Duration: ${formatTime(durationFasting).toString()}'),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
