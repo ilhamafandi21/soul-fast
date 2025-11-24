@@ -99,7 +99,12 @@ class _HomeState extends State<Home> {
             margin: const EdgeInsets.only(top: 5),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-          
+              color:  const Color.fromARGB(255, 176, 225, 255),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              spacing: 5,
+              children: [
                 Container(
                   height: 50,
                   width: double.infinity,
