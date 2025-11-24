@@ -72,14 +72,15 @@ class _HomeState extends State<Home> {
         if (durationFasting > 0) {
           durationFasting--;
         } else {
-          countdownTimer?.cancel();
+          countdownTimer!.cancel();
         }
       });
     });
   }
 
   void stopFasting() {
-    countdownTimer?.cancel();
+    countdownTimer!.cancel();
+    countdownTimer = null;
   }
 
   @override
@@ -118,9 +119,16 @@ class _HomeState extends State<Home> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        startFasting();
+                        if (countdownTimer != null && countdownTimer!.isActive) {
+                          stopFasting();
+                          return;
+                        }else{
+                          startFasting();
+                        }
                       },
-                      child: Text('Start'),
+                      child: Text(
+                        (countdownTimer != null && countdownTimer!.isActive)?'Stop':'Start',
+                      ),
                     ),
                   ],
                 ),
