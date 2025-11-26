@@ -131,6 +131,7 @@ class _HomeState extends State<Home> {
                           setState(() {
                             selectedVariant = value;
                             updateDurationFasting(value);
+                            saveDurationFasting(durationFasting.toInt());
                             stopFasting();
                           });
                         },
@@ -142,7 +143,6 @@ class _HomeState extends State<Home> {
                             stopFasting();
                           } else {
                             startFasting();
-                            saveDurationFasting(durationFasting.toInt());
                           }
                         },
                         style: ButtonStyle(
