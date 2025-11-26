@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
   Future<void> saveDurationFasting(int durationFastingData) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('durationFastingData', durationFastingData);
-    print("Stored in prefs: ${prefs.getInt('durationFasting')}");
+    print("Stored in prefs: ${prefs.getInt('durationFastingData')}");
   }
 
   void updateDurationFasting(String? variant) {
@@ -78,6 +78,7 @@ class _HomeState extends State<Home> {
       setState(() {
         if (durationFasting > 0) {
           durationFasting--;
+          saveDurationFasting(durationFasting);
         } else {
           countdownTimer!.cancel();
         }
@@ -131,7 +132,6 @@ class _HomeState extends State<Home> {
                           setState(() {
                             selectedVariant = value;
                             updateDurationFasting(value);
-                            saveDurationFasting(durationFasting.toInt());
                             stopFasting();
                           });
                         },
