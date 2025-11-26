@@ -74,11 +74,11 @@ class _HomeState extends State<Home> {
   }
 
   void startFasting() {
+    saveDurationFasting(durationFasting);
     countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         if (durationFasting > 0) {
           durationFasting--;
-          saveDurationFasting(durationFasting);
         } else {
           countdownTimer!.cancel();
         }
