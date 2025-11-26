@@ -107,26 +107,7 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.only(top: 5),
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 176, 225, 255),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              spacing: 5,
-              children: [
-                Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 151, 201, 242),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: 10,
-                    children: [
-                      DropdownButton<String>(
+            pad
                         hint: Text('Select'),
                         value: selectedVariant,
                         items: variantFasting,
