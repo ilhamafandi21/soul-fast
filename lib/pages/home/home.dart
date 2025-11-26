@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,6 +29,11 @@ class _HomeState extends State<Home> {
           (variant) => DropdownMenuItem(value: variant, child: Text(variant)),
         )
         .toList();
+  }
+
+  Future<void> saveDurationFasting(int durationFastingData) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('durationFastingData', durationFastingData);
   }
 
   void updateDurationFasting(String? variant) {
@@ -99,7 +105,7 @@ class _HomeState extends State<Home> {
             margin: const EdgeInsets.only(top: 5),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color:  const Color.fromARGB(255, 176, 225, 255),
+              color: const Color.fromARGB(255, 176, 225, 255),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -135,6 +141,7 @@ class _HomeState extends State<Home> {
                             stopFasting();
                           } else {
                             startFasting();
+                            saveDurationFasting(durationFasting);
                           }
                         },
                         style: ButtonStyle(
@@ -163,7 +170,9 @@ class _HomeState extends State<Home> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Duration: ${formatTime(durationFasting).toString()}'),
+                      Text(
+                        'Duration: ${formatTime(durationFasting).toString()}',
+                      ),
                     ],
                   ),
                 ),
