@@ -15,6 +15,7 @@ class _HomeState extends State<Home> {
   String? selectedFasting;
   int durationFasting = 0;
   Timer? countdownTimer;
+  int remainingTime = 0;
 
   List<String> variantFasting = [
     '5 Detik',
@@ -55,7 +56,7 @@ class _HomeState extends State<Home> {
     final prefs = await SharedPreferences.getInstance();
     final endTime =  DateTime.now().add(Duration(seconds: duration));
     await prefs.setInt('fasting_duration', duration);
-    await prefs.setInt('fasting_close', endTime.second);
+    await prefs.setInt('fasting_close', endTime.millisecondsSinceEpoch);
     await prefs.setString('selected_fasting', selectFasting);
     print('Fasting duration saved: $duration seconds for $selectFasting');
     print('Fasting EndTime: $endTime');
@@ -64,7 +65,14 @@ class _HomeState extends State<Home> {
   void startFasting() async {
     final prefs = await SharedPreferences.getInstance();
     final endTime = await prefs.getInt('fasting_close') ?? 0;
-    print('Fasting will end at second: $endTime');
+
+    setState(() {
+      countdownTimer = Timer.periodic(Duration(seconds: 1), (timer){
+        final currentTime = DateTime.now().millisecondsSinceEpoch;
+        durationFasting = endTime - currentTime;
+      });
+    });
+
   }
 
   @override
