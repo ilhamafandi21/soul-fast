@@ -63,8 +63,11 @@ class _HomeState extends State<Home> {
 
   void startFasting() async {
 
+    final prefs = await SharedPreferences.getInstance();
+    final endTimeMillis = prefs.getInt('fasting_close');
+
     print('Fasting duration saved: $duration seconds for $selectFasting');
-    print('Fasting EndTime: $endTime');
+    print('Fasting EndTime: $endTimeMillis');
     countdownTimer?.cancel(); // Batalkan timer sebelumnya jika ada
   }
 
