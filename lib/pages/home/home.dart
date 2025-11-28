@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
 
   void startFasting() async {
     final prefs = await SharedPreferences.getInstance();
-    final endTime = await prefs.getInt('fasting_close') ?? 0;
+    final endTime = prefs.getInt('fasting_close') ?? 0;
 
     countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       final currentTime = DateTime.now().millisecondsSinceEpoch;
