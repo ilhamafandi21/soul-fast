@@ -58,18 +58,14 @@ class _HomeState extends State<Home> {
     await prefs.setInt('fasting_duration', duration);
     await prefs.setInt('fasting_close', endTime.millisecondsSinceEpoch);
     await prefs.setString('selected_fasting', selectFasting);
-    print('Fasting duration saved: $duration seconds for $selectFasting');
-    print('Fasting EndTime: $endTime');
+   
   }
 
   void startFasting() async {
-    final prefs = await SharedPreferences.getInstance();
-    final endTime = prefs.getInt('fasting_close') ?? 0;
 
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      final currentTime = DateTime.now().millisecondsSinceEpoch;
-      durationFasting = endTime - currentTime;
-    });
+    print('Fasting duration saved: $duration seconds for $selectFasting');
+    print('Fasting EndTime: $endTime');
+    countdownTimer?.cancel(); // Batalkan timer sebelumnya jika ada
   }
 
   @override
