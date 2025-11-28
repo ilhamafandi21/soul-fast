@@ -65,11 +65,17 @@ class _HomeState extends State<Home> {
     final currentTime = DateTime.now().millisecondsSinceEpoch;
     final endTimeMillis = prefs.getInt('fasting_close');
     final selectFasting = prefs.getString('selected_fasting');
+    final hasil = endTimeMillis! - currentTime;
 
     print('Selected Fasring: $selectFasting');
     print('Current Time: $currentTime');
     print('Finish Time: $endTimeMillis');
-    countdownTimer?.cancel(); // Batalkan timer sebelumnya jika ada
+    print('Hasil: $hasil');
+  }
+
+  void stopFasting() {
+    countdownTimer?.cancel();
+    countdownTimer = null;
   }
 
   @override
@@ -92,20 +98,21 @@ class _HomeState extends State<Home> {
                 }).toList(),
                 onChanged: (e) {
                   setState(() {
+                    stopFasting();
                     selectedFasting = e;
                     duration();
-
-                    saveFastingDuration(
-                      durationFasting,
-                      selectedFasting.toString(),
-                    );
                   });
                 },
               ),
 
               ElevatedButton(
                 onPressed: () {
+                   saveFastingDuration(
+                    durationFasting,
+                    selectedFasting.toString(),
+                  );
                   startFasting();
+                 
                 },
                 child: Text('Start'),
               ),
