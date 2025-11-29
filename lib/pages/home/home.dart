@@ -13,28 +13,7 @@ class Home exten
         break;
       case '24 hours':
         durationFasting = 24 * 3600;
-        break;
-      case '5:2':
-        durationFasting = 48 * 3600;
-        break;
-      default:
-        durationFasting = 0;
-    }
-  }
-
-  Future<void> saveFastingDuration(int duration, String selectFasting) async {
-    // Simpan durasi puasa ke penyimpanan lokal atau basis data
-    final prefs = await SharedPreferences.getInstance();
-    final endTime = DateTime.now().add(Duration(seconds: duration));
-    await prefs.setInt('fasting_duration', duration);
-    await prefs.setInt('fasting_close', endTime.millisecondsSinceEpoch);
-    await prefs.setString('selected_fasting', selectFasting);
-  }
-
-  void startFasting() async {
-    final prefs = await SharedPreferences.getInstance();
-    final currentTime = DateTime.now().millisecondsSinceEpoch;
-    final endTimeMillis = prefs.getInt('fasting_close');
+        break;');
     final selectFasting = prefs.getString('selected_fasting');
     final hasil = endTimeMillis! - currentTime;
 
