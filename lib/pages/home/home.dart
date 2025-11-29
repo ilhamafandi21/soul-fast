@@ -5,26 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home exten
-  Timer? countdownTimer;
-  int remainingTime = 0;
-
-  List<String> variantFasting = [
-    '5 Detik',
-    '16/8',
-    '18/6',
-    '20/4',
-    '24 hours',
-    '5:2',
-  ];
-
-  void duration() {
-    switch (selectedFasting) {
-      case '5 Detik':
-        durationFasting = 5;
-        break;
-      case '16/8':
-        durationFasting = 16 * 3600;
-        break;
       case '18/6':
         durationFasting = 18 * 3600;
         break;
