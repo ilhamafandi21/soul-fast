@@ -4,16 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  String? selectedFasting;
-  int durationFasting = 0;
+class Home exten
   Timer? countdownTimer;
   int remainingTime = 0;
 
@@ -55,7 +46,17 @@ class _HomeState extends State<Home> {
     // Simpan durasi puasa ke penyimpanan lokal atau basis data
     final prefs = await SharedPreferences.getInstance();
     final endTime = DateTime.now().add(Duration(seconds: duration));
-    await prefs.setInt('f
+    await prefs.setInt('fasting_duration', duration);
+    await prefs.setInt('fasting_close', endTime.millisecondsSinceEpoch);
+    await prefs.setString('selected_fasting', selectFasting);
+  }
+
+  void startFasting() async {
+    final prefs = await SharedPreferences.getInstance();
+    final currentTime = DateTime.now().millisecondsSinceEpoch;
+    final endTimeMillis = prefs.getInt('fasting_close');
+    final selectFasting = prefs.getString('selected_fasting');
+    final hasil = endTimeMillis! - currentTime;
 
     print('Selected Fasring: $selectFasting');
     print('Current Time: $currentTime');
@@ -68,11 +69,52 @@ class _HomeState extends State<Home> {
     countdownTimer = null;
   }
 
-                hint
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Fasting App!'),
+        backgroundColor: Colors.blue[300],
+      ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DropdownButton(
+                value: selectedFasting,
+                hint: Text('Select'),
+                items: variantFasting.map((e) {
+                  return DropdownMenuItem(value: e, child: Text(e));
+                }).toList(),
+                onChanged: (e) {
+                  setState(() {
+                    stopFasting();
+                    selectedFasting = e;
+                    duration();
+                  });
+                },
+              ),
+
+              ElevatedButton(
+                onPressed: () {
+                   saveFastingDuration(
+                    durationFasting,
+                    selectedFasting.toString(),
+                  );
+                  startFasting();
+                 
                 },
                 child: Text('Start'),
               ),
             ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text('Duration Fasting: $durationFasting')],
+          ),
+        ],
+      ),
     );
   }
 }
