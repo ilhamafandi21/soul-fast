@@ -78,27 +78,7 @@ class _HomeState extends State<Home> {
     countdownTimer = null;
   }
 
-                hint: Text('Select'),
-                items: variantFasting.map((e) {
-                  return DropdownMenuItem(value: e, child: Text(e));
-                }).toList(),
-                onChanged: (e) {
-                  setState(() {
-                    stopFasting();
-                    selectedFasting = e;
-                    duration();
-                  });
-                },
-              ),
-
-              ElevatedButton(
-                onPressed: () {
-                   saveFastingDuration(
-                    durationFasting,
-                    selectedFasting.toString(),
-                  );
-                  startFasting();
-                 
+                hint
                 },
                 child: Text('Start'),
               ),
