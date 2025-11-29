@@ -78,20 +78,6 @@ class _HomeState extends State<Home> {
     countdownTimer = null;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Fasting App!'),
-        backgroundColor: Colors.blue[300],
-      ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DropdownButton(
-                value: selectedFasting,
                 hint: Text('Select'),
                 items: variantFasting.map((e) {
                   return DropdownMenuItem(value: e, child: Text(e));
