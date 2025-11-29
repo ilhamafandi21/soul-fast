@@ -55,17 +55,7 @@ class _HomeState extends State<Home> {
     // Simpan durasi puasa ke penyimpanan lokal atau basis data
     final prefs = await SharedPreferences.getInstance();
     final endTime = DateTime.now().add(Duration(seconds: duration));
-    await prefs.setInt('fasting_duration', duration);
-    await prefs.setInt('fasting_close', endTime.millisecondsSinceEpoch);
-    await prefs.setString('selected_fasting', selectFasting);
-  }
-
-  void startFasting() async {
-    final prefs = await SharedPreferences.getInstance();
-    final currentTime = DateTime.now().millisecondsSinceEpoch;
-    final endTimeMillis = prefs.getInt('fasting_close');
-    final selectFasting = prefs.getString('selected_fasting');
-    final hasil = endTimeMillis! - currentTime;
+    await prefs.setInt('f
 
     print('Selected Fasring: $selectFasting');
     print('Current Time: $currentTime');
