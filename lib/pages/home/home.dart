@@ -5,12 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home exten
-      case '18/6':
-        durationFasting = 18 * 3600;
-        break;
-      case '20/4':
-        dura
-    print('Current Time: $currentTime');
+      case
     print('Finish Time: $endTimeMillis');
     print('Hasil: $hasil');
   }
