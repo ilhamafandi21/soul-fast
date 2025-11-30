@@ -14,11 +14,7 @@ class Home exten
 
   void stopFasting() {
     countdow
-                    stopFasting();
-                    selectedFasting = e;
-                    duration();
-                  });
-                },
+                    stopF
               ),
 
               ElevatedButton(
