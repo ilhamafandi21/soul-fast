@@ -9,15 +9,7 @@ class Home exten
         durationFasting = 18 * 3600;
         break;
       case '20/4':
-        durationFasting = 20 * 3600;
-        break;
-      case '24 hours':
-        durationFasting = 24 * 3600;
-        break;');
-    final selectFasting = prefs.getString('selected_fasting');
-    final hasil = endTimeMillis! - currentTime;
-
-    print('Selected Fasring: $selectFasting');
+        dura
     print('Current Time: $currentTime');
     print('Finish Time: $endTimeMillis');
     print('Hasil: $hasil');
