@@ -9,9 +9,7 @@ class Home exten
     final hasil = endTimeMillis! - currentTime;
 
     print('Selected Fasring: $selectFasting');
-    print('Current Time: $currentTime');
-    print('Finish Time: $endTimeMillis');
-    print('Hasil: $hasil');
+    print('Current Time: $c
   }
 
   void stopFasting() {
