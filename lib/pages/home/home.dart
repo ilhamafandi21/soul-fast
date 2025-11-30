@@ -32,14 +32,7 @@ class Home exten
                 },
               ),
 
-              ElevatedButton(
-                onPressed: () {
-                   saveFastingDuration(
-                    durationFasting,
-                    selectedFasting.toString(),
-                  );
-                  startFasting();
-                 
+              Elev
                 },
                 child: Text('Start'),
               ),
