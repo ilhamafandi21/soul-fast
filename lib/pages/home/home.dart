@@ -29,16 +29,6 @@ class Home exten
                     selectedFasting = e;
                     duration();
                   });
-                },
-              ),
-
-              ElevatedButton(
-                onPressed: () {
-                   saveFastingDuration(
-                    durationFasting,
-                    selectedFasting.toString(),
-                  );
-                  startFasting();
                  
                 },
                 child: Text('Start'),
