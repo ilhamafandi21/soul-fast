@@ -8,10 +8,4 @@ class Home exten
   void stopFasting
               Elev
                 },
-                child: Text('Start'),
-              ),
-            ],
-          ),
-    );
-  }
-}
+          
