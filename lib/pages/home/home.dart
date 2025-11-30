@@ -15,15 +15,7 @@ class Home exten
     print('Hasil: $hasil');
   }
 
-  void stopFasting() {
-    countdow
-                    stopFasting();
-                    selectedFasting = e;
-                    duration();
-                  });
-                },
-              ),
-
+  void stopFasting
               Elev
                 },
                 child: Text('Start'),
