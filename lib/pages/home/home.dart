@@ -26,11 +26,6 @@ class Home exten
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Duration Fasting: $durationFasting')],
-          ),
-        ],
-      ),
     );
   }
 }
