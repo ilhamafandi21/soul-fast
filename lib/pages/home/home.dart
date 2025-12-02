@@ -75,13 +75,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<int> getRemainingSeconds() async {
-    final prefs = await SharedPreferences.getInstance();
-    final endTime = prefs.getInt('endTime') ?? 0;
-
-    final now = DateTime.now().millisecondsSinceEpoch;
-
-    final diff = endTime - now;
-
+    final prefs = aw
     if (diff <= 0) {
       countTimer?.cancel();
       return 0;
