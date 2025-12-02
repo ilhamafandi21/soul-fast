@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String? selectedFasting;
   int durationFasting = 0;
-  int countdownTimer = 0;
+  int remainingSeconds = 0;
   Timer? countTimer;
 
   List<DropdownMenuItem<String>> get variantFasting {
@@ -53,10 +53,19 @@ class _HomeState extends State<Home> {
 
     countTimer?.cancel();
 
+    int sisaAwal = await getRemainingSeconds();
+    setState(() {
+      durationFasting = sisaAwal;
+    });
+
     countTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
       int sisa = await getRemainingSeconds();
 
       print("Sisa: $sisa detik");
+
+      setState(() {
+        durationFasting = sisa + 0;
+      });
 
       if (sisa <= 0) {
         timer.cancel();
@@ -75,7 +84,7 @@ class _HomeState extends State<Home> {
 
     if (diff <= 0) return 0;
 
-    return durationFasting = diff ~/ 1000; // ms → detik
+    return diff ~/ 1000; // ms → detik
   }
 
   @override
