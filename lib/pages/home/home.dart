@@ -32,7 +32,16 @@ class _HomeState extends State<Home> {
         durationFasting = 16 * 3600;
         break;
       case "18/6":
-        durationFasting = 18 
+        durationFasting = 18 * 3600;
+        break;
+      case "20/4":
+        durationFasting = 20 * 3600;
+        break;
+      default:
+        durationFasting = 0 * 3600;
+    }
+  }
+
   Future<void> startFasting() async {
     final prefs = await SharedPreferences.getInstance();
     final endTime = DateTime.now()
