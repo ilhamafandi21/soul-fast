@@ -50,15 +50,7 @@ class _HomeState extends State<Home> {
 
     await prefs.setInt('endTime', endTime);
     print("EndTime Saved: $endTime");
-
-    countTimer?.cancel();
-
-    int sisaAwal = await getRemainingSeconds();
-    setState(() {
-      durationFasting = sisaAwal;
-    });
-
-    countTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
+(timer) async {
       int sisa = await getRemainingSeconds();
 
       print("Sisa: $sisa detik");
