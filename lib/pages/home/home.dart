@@ -61,14 +61,6 @@ class _HomeState extends State<Home> {
     countTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
       int sisa = await getRemainingSeconds();
 
-      print("Sisa: $sisa detik");
-
-      setState(() {
-        durationFasting = sisa + 0;
-      });
-
-      if (sisa <= 0) {
-        timer.cancel();
         print("Fasting selesai");
       }
     });
