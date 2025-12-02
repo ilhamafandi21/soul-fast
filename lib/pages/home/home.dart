@@ -103,7 +103,19 @@ class _HomeState extends State<Home> {
                     onChanged: (value) {
                       setState(() {
                         selectedFasting = value;
-                        duration
+                        duration();
+                      });
+                    },
+                  ),
+                  Text(selectedFasting ?? 'No Fasting Selected'),
+                  Text(durationFasting.toString()),
+
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(Colors.blue),
+                    ),
+                    onPressed: () {
+                      startFasting();
                     },
                     child: Text('Start'),
                   ),
