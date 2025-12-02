@@ -43,13 +43,12 @@ class _HomeState extends State<Home> {
 
   Future<void> startFasting() async {
     final prefs = await SharedPreferences.getInstance();
-    final currentTime = prefs.setInt(
-      'endTime',
-      DateTime.now()
-          .add(Duration(seconds: durationFasting))
-          .millisecondsSinceEpoch,
-    );
-    print(prefs.getInt('endTime'));
+    final endTime = DateTime.now()
+        .add(Duration(seconds: durationFasting))
+        .millisecondsSinceEpoch;
+
+    await prefs.setInt('endTime', endTime);
+    print("EndTime Saved: $endTime");
   }
 
   @override
