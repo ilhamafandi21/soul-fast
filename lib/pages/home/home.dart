@@ -14,6 +14,7 @@ class _HomeState extends State<Home> {
   String? selectedFasting;
   int durationFasting = 0;
   int countdownTimer = 0;
+  Timer? countTimer;
 
   List<DropdownMenuItem<String>> get variantFasting {
     List<String> fastingType = ["5 Detik", "16/8", "18/6", "20/4"];
@@ -49,6 +50,32 @@ class _HomeState extends State<Home> {
 
     await prefs.setInt('endTime', endTime);
     print("EndTime Saved: $endTime");
+
+    countTimer?.cancel();
+
+    countTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
+      int sisa = await getRemainingSeconds();
+
+      print("Sisa: $sisa detik");
+
+      if (sisa <= 0) {
+        timer.cancel();
+        print("Fasting selesai");
+      }
+    });
+  }
+
+  Future<int> getRemainingSeconds() async {
+    final prefs = await SharedPreferences.getInstance();
+    final endTime = prefs.getInt('endTime') ?? 0;
+
+    final now = DateTime.now().millisecondsSinceEpoch;
+
+    final diff = endTime - now;
+
+    if (diff <= 0) return 0;
+
+    return diff ~/ 1000; // ms → detik
   }
 
   @override
