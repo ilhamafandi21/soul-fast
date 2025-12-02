@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
 
     if (diff <= 0) return 0;
 
-    return diff ~/ 1000; // ms → detik
+    return durationFasting = diff ~/ 1000; // ms → detik
   }
 
   @override
