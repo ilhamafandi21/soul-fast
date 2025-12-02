@@ -32,16 +32,7 @@ class _HomeState extends State<Home> {
         durationFasting = 16 * 3600;
         break;
       case "18/6":
-        durationFasting = 18 * 3600;
-        break;
-      case "20/4":
-        durationFasting = 20 * 3600;
-        break;
-      default:
-        durationFasting = 0 * 3600;
-    }
-  }
-
+        durationFasting = 18 
   Future<void> startFasting() async {
     final prefs = await SharedPreferences.getInstance();
     final endTime = DateTime.now()
@@ -82,7 +73,10 @@ class _HomeState extends State<Home> {
 
     final diff = endTime - now;
 
-    if (diff <= 0) return 0;
+    if (diff <= 0) {
+      countTimer?.cancel();
+      return 0;
+    };
 
     return diff ~/ 1000; // ms → detik
   }
