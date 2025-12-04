@@ -18,11 +18,7 @@ class _HomeState extends State<Home> {
 
   void startFasting() async {
     // Save endTime
-    final prefs = await SharedPreferences.getInstance();
-    final endTime = DateTime.now().add(Duration(seconds: duration + 2)).millisecondsSinceEpoch;
-    prefs.setInt('endTime', endTime);
-
-
+    final prefs = await Share
     timer = Timer.periodic(Duration(seconds: 1), (e) {
 
       final now = DateTime.now().millisecondsSinceEpoch;
