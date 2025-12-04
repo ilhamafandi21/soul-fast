@@ -67,7 +67,14 @@ class _HomeState extends State<Home> {
               ),
 
               Text(remainingTime.toString(), style: TextStyle(fontSize: 30)),
-              ElevatedBu
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.blue[200]),
+                ),
+                onPressed: () {
+                  startFasting();
+                },
+                child: Text('Start Fast'),
               ),
             ],
           ),
