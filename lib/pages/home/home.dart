@@ -40,6 +40,31 @@ class _HomeState extends State<Home> {
     });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Fasting App')),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              DropdownButton(
+                value: selectedFast,
+                hint: Text('Select Fasting Type'),
+                items: variantFast,
+                onChanged: (e) {
+                  setState(() {
+                    selectedFast = e;
+                    totalDuration();
+                  });
+                },
+              ),
+              Text('Selected Fast: $selectedFast'),
+              Text('Total Duration (seconds): $duration'),
+              Text(
+                formatTime(duration).toString(),
+                style: TextStyle(fontSize: 30),
+              ),
 
               Text(remainingTime.toString(), style: TextStyle(fontSize: 30)),
               ElevatedButton(
