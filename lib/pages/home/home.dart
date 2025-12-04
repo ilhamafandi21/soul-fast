@@ -23,12 +23,7 @@ class _HomeState extends State<Home> {
     prefs.setInt('endTime', endTime);
 
 
-    timer = Timer.periodic(Duration(seconds: 1), (e) {
-
-      final now = DateTime.now().millisecondsSinceEpoch;
-      final diff = endTime - now;
-
-
+    timer = Timer.periodic(Durati
       setState(() {
         if (diff <= 0) {
           timer?.cancel();
