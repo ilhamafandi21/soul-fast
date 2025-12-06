@@ -13,8 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Timer? timer;
-  int remainingTime = 0;
-  int endTime = 0;
+  int re
 
   void startFasting() async {
     // Save endTime
