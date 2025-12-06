@@ -58,11 +58,7 @@ class _HomeState extends State<Home> {
                   });
                 },
               ),
-              Text('Selected Fast: $selectedFast'),
-              Text('Total Duration (seconds): $duration'),
-              Text(
-                formatTime(duration).toString(),
-                style: TextStyle(fontSize: 30),
+              Text('Selected 
               ),
 
               Text(remainingTime.toString(), style: TextStyle(fontSize: 30)),
