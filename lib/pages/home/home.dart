@@ -54,15 +54,7 @@ class _HomeState extends State<Home> {
                 onChanged: (e) {
                   setState(() {
                     selectedFast = e;
-                    totalDuration();
-                  });
-                },
-              ),
-              Text('Selected Fast: $selectedFast'),
-              Text('Total Duration (seconds): $duration'),
-              Text(
-                formatTime(duration).toString(),
-                style: TextStyle(fontSize: 30),
+                    totalDuration
               ),
 
               Text(remainingTime.toString(), style: TextStyle(fontSize: 30)),
