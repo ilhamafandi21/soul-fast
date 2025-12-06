@@ -22,13 +22,6 @@ class _HomeState extends State<Home> {
     final endTime = DateTime.now().add(Duration(seconds: duration + 2)).millisecondsSinceEpoch;
     prefs.setInt('endTime', endTime);
 
-
-    timer = Timer.periodic(Duration(seconds: 1), (e) {
-
-      final now = DateTime.now().millisecondsSinceEpoch;
-      final diff = endTime - now;
-
-
       setState(() {
         if (diff <= 0) {
           timer?.cancel();
