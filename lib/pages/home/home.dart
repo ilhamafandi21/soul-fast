@@ -50,17 +50,7 @@ class _HomeState extends State<Home> {
               DropdownButton(
                 value: selectedFast,
                 hint: Text('Select Fasting Type'),
-                items: variantFast,
-                onChanged: (e) {
-                  setState(() {
-                    selectedFast = e;
-                    totalDuration();
-                  });
-                },
-              ),
-              Text('Selected Fast: $selectedFast'),
-              Text('Total Duration (seconds): $duration'),
-              Text(
+                items:
                 formatTime(duration).toString(),
                 style: TextStyle(fontSize: 30),
               ),
