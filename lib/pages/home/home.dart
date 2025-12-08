@@ -33,16 +33,7 @@ class _HomeState extends State<Home> {
         if (diff <= 0) {
           timer?.cancel();
         } else {
-          remainingTime = diff ~/ 1000;
-        }
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Fasting App')),
+          remai
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
