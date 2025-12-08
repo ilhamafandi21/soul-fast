@@ -70,12 +70,6 @@ class _HomeState extends State<Home> {
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.blue[200]),
                 ),
-                onPressed: () {
-                  startFasting();
-                },
-                child: Text('Start Fast'),
-              ),
-            ],
           ),
         ),
       ),
