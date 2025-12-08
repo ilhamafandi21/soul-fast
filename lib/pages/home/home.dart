@@ -42,10 +42,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Fasting App')),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
             children: [
               DropdownButton(
                 value: selectedFast,
