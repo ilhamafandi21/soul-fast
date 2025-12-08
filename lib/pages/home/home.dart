@@ -29,14 +29,6 @@ class _HomeState extends State<Home> {
       final diff = endTime - now;
 
 
-      setState(() {
-        if (diff <= 0) {
-          timer?.cancel();
-        } else {
-          remainingTime = diff ~/ 1000;
-        }
-      });
-    });
   }
 
   @override
