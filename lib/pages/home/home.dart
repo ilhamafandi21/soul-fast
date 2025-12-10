@@ -71,14 +71,7 @@ class _HomeState extends State<Home> {
                     color: const Color.fromARGB(255, 228, 255, 121),
                     borderRadius: BorderRadius.circular(50)
                   ),
-                  child: Column(
-                    children: [
-                      DropdownButton(
-                  value: selectedFasting,
-                  hint: Text('Pilih Jenis Fasting'),
-                  items: variantFasting,
-                  onChanged: (e) {
-                    setState(() {
+                  child: Column
                       selectedFasting = e;
                       duration();
                       stopFasting();
