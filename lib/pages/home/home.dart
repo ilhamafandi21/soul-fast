@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:soulfast/pages/home/data.dart';
 
@@ -9,28 +11,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int durationFasting = 0;
+ 
+  Timer? timer;
+  int timeNow = 0;
 
-  void duration() {
-    switch (selectedFasting) {
-      case "5 Detik":
-        durationFasting = 5;
-        break;
-      case "16/8":
-        durationFasting = 16 * 3600;
-        break;
-      case "18/6":
-        durationFasting = 18 * 3600;
-        break;
-      case "20/4":
-        durationFasting = 20 * 3600;
-        break;
-      case "24 Jam":
-        durationFasting = 24 * 3600;
-        break;
-      default:
-        durationFasting = 0;
-    }
+ void startFasting() {
+    timeNow = DateTime.now().microsecondsSinceEpoch;
   }
 
   @override
@@ -53,8 +39,12 @@ class _HomeState extends State<Home> {
                 },
               ),
 
-              ElevatedButton(onPressed: () {}, child: Text('Mulai Fasting')),
-              Text(durationFasting.toString()),
+              ElevatedButton(onPressed: () {
+                setState(() {
+                  startFasting();
+                });
+              }, child: Text('Mulai Fasting')),
+              Text(timeNow.toString()),
             ],
           ),
         ),
