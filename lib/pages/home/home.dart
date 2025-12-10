@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soulfast/pages/home/data.dart';
 
 class Home extends StatefulWidget {
@@ -11,12 +12,32 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
- 
   Timer? timer;
-  int timeNow = 0;
+  int endDate = 0;
+  int remainingTime = 0;
 
- void startFasting() {
-    timeNow = DateTime.now().microsecondsSinceEpoch;
+  void startFasting() async {
+    final prefs = await SharedPreferences.getInstance();
+    endDate = DateTime.now()
+        .add(Duration(seconds: durationFasting+2))
+        .millisecondsSinceEpoch;
+    prefs.setInt('endDate', endDate);
+
+    prefs.getInt('endDate');
+
+    timer = Timer.periodic(Duration(seconds: 1), (e){
+      final now = DateTime.now().millisecondsSinceEpoch;
+      final diff = endDate - now;
+
+      if(diff <= 0){
+        remainingTime = 0;
+        timer?.cancel();
+      }else{
+        setState(() {
+          remainingTime = diff ~/1000;
+        });
+      }
+    });
   }
 
   @override
@@ -39,12 +60,15 @@ class _HomeState extends State<Home> {
                 },
               ),
 
-              ElevatedButton(onPressed: () {
-                setState(() {
-                  startFasting();
-                });
-              }, child: Text('Mulai Fasting')),
-              Text(timeNow.toString()),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    startFasting();
+                  });
+                },
+                child: Text('Mulai Fasting'),
+              ),
+              Text(remainingTime.toString()),
             ],
           ),
         ),
