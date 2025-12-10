@@ -54,11 +54,7 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            height: 200,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 10),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 209, 223, 6),
+            height:, 223, 6),
               borderRadius: BorderRadius.circular(30),
             ),
             child: Column(
