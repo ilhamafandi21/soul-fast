@@ -19,57 +19,83 @@ class _HomeState extends State<Home> {
   void startFasting() async {
     final prefs = await SharedPreferences.getInstance();
     endDate = DateTime.now()
-        .add(Duration(seconds: durationFasting+2))
+        .add(Duration(seconds: durationFasting + 1))
         .millisecondsSinceEpoch;
     prefs.setInt('endDate', endDate);
 
     prefs.getInt('endDate');
 
-    timer = Timer.periodic(Duration(seconds: 1), (e){
+    timer = Timer.periodic(Duration(seconds: 1), (e) {
       final now = DateTime.now().millisecondsSinceEpoch;
       final diff = endDate - now;
 
-      if(diff <= 0){
+      if (diff <= 0) {
         remainingTime = 0;
         timer?.cancel();
-      }else{
+      } else {
         setState(() {
-          remainingTime = diff ~/1000;
+          remainingTime = diff ~/ 1000;
         });
       }
+    });
+  }
+
+  void stopFasting() {
+    setState(() {
+      timer?.cancel();
+      remainingTime = 0;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('App Fasting'), backgroundColor: Colors.amber),
+      appBar: AppBar(
+        title: Text('App Fasting'),
+        backgroundColor: Colors.amber,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              DropdownButton(
-                value: selectedFasting,
-                hint: Text('Pilih Jenis Fasting'),
-                items: variantFasting,
-                onChanged: (e) {
-                  setState(() {
-                    selectedFasting = e;
-                    duration();
-                  });
-                },
-              ),
+          child: Container(
+            height: 200,
+            width: 200,
+            margin: EdgeInsets.only(top: 10),
+            decoration: BoxDecoration(
+              color: Colors.amber,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DropdownButton(
+                  value: selectedFasting,
+                  hint: Text('Pilih Jenis Fasting'),
+                  items: variantFasting,
+                  onChanged: (e) {
+                    setState(() {
+                      selectedFasting = e;
+                      duration();
+                      stopFasting();
+                    });
+                  },
+                ),
 
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    startFasting();
-                  });
-                },
-                child: Text('Mulai Fasting'),
-              ),
-              Text(remainingTime.toString()),
-            ],
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      startFasting();
+                    });
+                  },
+                  child: Text('Mulai Fasting'),
+                ),
+                Text(
+                  (timer != null && timer!.isActive)
+                      ? formatTime(remainingTime)
+                      : formatTime(durationFasting),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
         ),
       ),
