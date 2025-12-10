@@ -50,15 +50,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('App Fasting'),
-        backgroundColor: Colors.amber,
-      ),
+      appBar: AppBar(title: Text('App Fasting'), backgroundColor: Colors.amber),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             height: 200,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
               color: Colors.amber,
@@ -67,7 +64,16 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                DropdownButton(
+                Container(
+                  height: 140,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 228, 255, 121),
+                    borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: Column(
+                    children: [
+                      DropdownButton(
                   value: selectedFasting,
                   hint: Text('Pilih Jenis Fasting'),
                   items: variantFasting,
@@ -79,7 +85,7 @@ class _HomeState extends State<Home> {
                     });
                   },
                 ),
-
+            
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
@@ -94,6 +100,9 @@ class _HomeState extends State<Home> {
                       : formatTime(durationFasting),
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
