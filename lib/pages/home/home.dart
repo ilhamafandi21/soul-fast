@@ -75,11 +75,7 @@ class _HomeState extends State<Home> {
                     children: [
                       DropdownButton(
                   value: selectedFasting,
-                  hint: Text('Pilih Jenis Fasting'),
-                  items: variantFasting,
-                  onChanged: (e) {
-                    setState(() {
-                      selectedFasting = e;
+                  hie;
                       duration();
                       stopFasting();
                     });
