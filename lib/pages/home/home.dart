@@ -94,7 +94,14 @@ class _HomeState extends State<Home> {
                   },
                   child: Text('Mulai Fasting'),
                 ),
-                
+                Text(
+                  (timer != null && timer!.isActive)
+                      ? formatTime(remainingTime)
+                      : formatTime(durationFasting),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                    ],
+                  ),
                 )
               ],
             ),
