@@ -87,14 +87,6 @@ class _HomeState extends State<Home> {
                 ),
             
                 ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      startFasting();
-                    });
-                  },
-                  child: Text('Mulai Fasting'),
-                ),
-                Text(
                   (timer != null && timer!.isActive)
                       ? formatTime(remainingTime)
                       : formatTime(durationFasting),
