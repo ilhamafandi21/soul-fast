@@ -63,13 +63,7 @@ class _HomeState extends State<Home> {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 140,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 228, 255, 121),
-                    borderRadius: BorderRadius.circular(50)
+              children: [50)
                   ),
                   child: Column(
                     children: [
