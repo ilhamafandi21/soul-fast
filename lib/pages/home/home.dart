@@ -25,14 +25,24 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text('App Fasting!')),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: DropdownButton(
-            hint: Text('Select'),
-            value: selectedFasting,
-            items: variantFasting, onChanged: (e) {
-            setState(() {
-              selectedFasting = e;
-            });
-          }),
+          child: Column(
+            children: [
+              DropdownButton(
+                hint: Text('Select'),
+                value: selectedFasting,
+                items: variantFasting, onChanged: (e) {
+                setState(() {
+                  selectedFasting = e;
+                });
+              }),
+
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                ),
+                onPressed: (){}, child: Text('Mulai Fasting'))
+            ],
+          ),
         ),
       ),
     );
