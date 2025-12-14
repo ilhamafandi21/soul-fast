@@ -52,6 +52,7 @@ class _HomeState extends State<Home> {
                 onChanged: (e) {
                   setState(() {
                     selectedFasting = e;
+                    duration();
                   });
                 },
               ),
@@ -66,7 +67,7 @@ class _HomeState extends State<Home> {
                 child: Text('Mulai Fasting'),
               ),
 
-              Text(durationFasting),
+              Text(durationFasting.toString()),
             ],
           ),
         ),
