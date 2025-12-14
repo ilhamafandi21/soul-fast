@@ -25,7 +25,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text('App Fasting!')),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: DropdownButton(items: variantFasting, onChanged: (e) {
+          child: DropdownButton(
+            hint: Text('Select'),
+            value: selectedFasting,
+            items: variantFasting, onChanged: (e) {
             setState(() {
               selectedFasting = e;
             });
