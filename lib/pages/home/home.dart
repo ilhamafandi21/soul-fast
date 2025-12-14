@@ -1,8 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:soulfast/pages/home/data.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,100 +8,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Timer? timer;
-  int endDate = 0;
-  int remainingTime = 0;
+  String? selectedFasting;
+  List<DropdownMenuItem<String>> get variantFasting {
+    List<String> fastingType = ['5 Detik', '16/8', '18/6', '24 Jam'];
 
-  void startFasting() async {
-    final prefs = await SharedPreferences.getInstance();
-    endDate = DateTime.now()
-        .add(Duration(seconds: durationFasting + 1))
-        .millisecondsSinceEpoch;
-    prefs.setInt('endDate', endDate);
-
-    prefs.getInt('endDate');
-
-    timer = Timer.periodic(Duration(seconds: 1), (e) {
-      final now = DateTime.now().millisecondsSinceEpoch;
-      final diff = endDate - now;
-
-      if (diff <= 0) {
-        remainingTime = 0;
-        timer?.cancel();
-      } else {
-        setState(() {
-          remainingTime = diff ~/ 1000;
-        });
-      }
-    });
-  }
-
-  void stopFasting() {
-    setState(() {
-      timer?.cancel();
-      remainingTime = 0;
-    });
+    return fastingType.map((e){
+      return DropdownMenuItem(
+        value: e,
+        child: Text(e));
+    }).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('App Fasting'), backgroundColor: const Color.fromARGB(255, 226, 255, 10)),
+      appBar: AppBar(title: Text('App Fasting!')),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Container(
-            height: 200,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 10),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 209, 223, 6),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 140,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 228, 255, 121),
-                    borderRadius: BorderRadius.circular(50)
-                  ),
-                  child: Column(
-                    children: [
-                      DropdownButton(
-                  value: selectedFasting,
-                  hint: Text('Pilih Jenis Fasting'),
-                  items: variantFasting,
-                  onChanged: (e) {
-                    setState(() {
-                      selectedFasting = e;
-                      duration();
-                      stopFasting();
-                    });
-                  },
-                ),
-            
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      startFasting();
-                    });
-                  },
-                  child: Text('Mulai Fasting'),
-                ),
-                Text(
-                  (timer != null && timer!.isActive)
-                      ? formatTime(remainingTime)
-                      : formatTime(durationFasting),
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+          child: DropdownButton(items: variantFasting, onChanged: (e) {
+            setState(() {
+              selectedFasting = e;
+            });
+          }),
         ),
       ),
     );
