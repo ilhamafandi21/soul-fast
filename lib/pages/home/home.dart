@@ -21,9 +21,7 @@ class _HomeState extends State<Home> {
               DropdownButton(
                 hint: Text('Select'),
                 value: selectedFasting,
-                items: variantFasting,
-                onChanged: (e) {
-                  setState(() {
+                items: vari
                     selectedFasting = e;
                     duration();
                   });
