@@ -22,7 +22,14 @@ class _HomeState extends State<Home> {
                 hint: Text('Select'),
                 value: selectedFasting,
                 items: variantFasting,
-                o
+                onChanged: (e) {
+                  setState(() {
+                    selectedFasting = e;
+                    duration();
+                  });
+                },
+              ),
+
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(
