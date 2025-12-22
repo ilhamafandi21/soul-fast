@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:soulfast/pages/home/data.dart';
-
+import 'package:
 class Home extends StatefulWidget {
   const Home({super.key});
 
