@@ -25,11 +25,7 @@ class _HomeState extends State<Home> {
                 onChanged: (e) {
                   setState(() {
                     selectedFasting = e;
-                    duration();
-                  });
-                },
-              ),
-
+                    dur
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(
