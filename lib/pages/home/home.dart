@@ -40,11 +40,6 @@ class _HomeState extends State<Home> {
                 child: Text('Mulai Fasting'),
               ),
 
-              Text(durationFasting.toString()),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
