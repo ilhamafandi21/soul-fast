@@ -15,7 +15,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(title: Text('App Fasting!')),
       body: SafeArea(
-        child: SingleC
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              DropdownButton(
+                hint: Text('Select'),
                 value: selectedFasting,
                 items: variantFasting,
                 onChanged: (e) {
