@@ -36,12 +36,7 @@ class _HomeState extends State<Home> {
                     const Color.fromARGB(255, 2, 255, 78),
                   ),
                 ),
-                onPressed: () {},
-                child: Text('Mulai Fasting'),
-              ),
-
-              Text(durationFasting.toString()),
-            ],
+                onPr
           ),
         ),
       ),
