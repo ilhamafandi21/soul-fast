@@ -24,7 +24,10 @@ class _HomeState extends State<Home> {
                 items: variantFasting,
                 onChanged: (e) {
                   setState(() {
-                    selec
+                    selectedFasting = e;
+                    duration();
+                  });
+                },
               ),
 
               ElevatedButton(
