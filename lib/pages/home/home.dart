@@ -13,9 +13,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('App Fasting!')),
-      body: SafeArea(
-        child: SingleChildScrollView(
+     
           child: Column(
             children: [
               DropdownButton(
