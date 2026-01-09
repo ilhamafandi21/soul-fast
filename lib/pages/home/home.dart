@@ -29,10 +29,7 @@ class _HomeState extends State<Home> {
                   });
                 },
               ),
-
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
+ertyAll(
                     const Color.fromARGB(255, 2, 255, 78),
                   ),
                 ),
