@@ -24,6 +24,9 @@ class _HomeState extends State<Home> {
                 items: variantFasting,
                 onChanged: (e) {
                   setState(() {
+                    selectedFasting = e;
+                    duration();
+                  });
                 },
               ),
 
