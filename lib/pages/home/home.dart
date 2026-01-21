@@ -37,8 +37,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 onPressed: () {},
-                child: Text('Mulai Fasting'),
-              ),
+                child: Text('Mulai Fast
 
               Text(durationFasting.toString()),
             ],
