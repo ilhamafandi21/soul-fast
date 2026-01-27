@@ -42,9 +42,4 @@ class _HomeState extends State<Home> {
 
               Text(durationFasting.toString()),
             ],
-          ),
-        ),
-      ),
-    );
-  }
 }
